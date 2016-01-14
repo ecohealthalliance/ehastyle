@@ -1,0 +1,10 @@
+Package: ehastyle
+Type: Package
+Title: Default styles for EcoHealth Alliance Reports
+Version: 0.1.0
+Author: Noam Ross
+Maintainer: Noam Ross <ross@ecohealthalliance.org>
+Description: Contains R Markdown templates and ggplot2 themes suitable for EHA work
+License: MIT
+LazyData: TRUE
+RoxygenNote: 5.0.1
