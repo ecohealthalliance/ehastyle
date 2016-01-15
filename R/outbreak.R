@@ -17,7 +17,7 @@ NULL
 
 outbreak <- function(self_contained = TRUE,
                                lib_dir = NULL,
-                               keep_md = TRUE,
+                               keep_md = FALSE,
                      cache_prefix = "cache/", ...) {
 
   outbreak_css <- pandoc_path_arg(system.file("outbreak-template.css", package = "ehastyle"))
@@ -64,8 +64,8 @@ if(!("try-error" %in% class(last_commit))) {
      #   file.remove("outbreak.lua")
         pandoc_self_contained_html(output_file, output_file)
        },
-
-    clean_supporting = FALSE,
+    keep_md = keep_md,
+    clean_supporting = TRUE,
     keep_md=TRUE,
     base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = TRUE,
                                      template = outbreak_template, ...))
@@ -73,7 +73,7 @@ if(!("try-error" %in% class(last_commit))) {
 
 #' @import ReporteRs
 #' @export
-outbreak_word <- function(cache_prefix = "cache/", ...) {
+outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
 
   outbreak_docx = system.file("template.docx", package = "ehastyle")
 
@@ -124,6 +124,6 @@ outbreak_word <- function(cache_prefix = "cache/", ...) {
       return(output_file)
     },
     clean_supporting = TRUE,
-    keep_md=TRUE,
+    keep_md=keep_md,
     base_format = word_document(fig_caption = TRUE, reference_docx = outbreak_docx, ...))
 }
