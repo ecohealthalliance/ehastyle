@@ -73,7 +73,7 @@ if(!("try-error" %in% class(last_commit))) {
 
 #' @import ReporteRs
 #' @export
-outbreak_word <- function(...) {
+outbreak_word <- function(cache_prefix = "cache/", ...) {
 
   outbreak_docx = system.file("template.docx", package = "ehastyle")
 
@@ -90,7 +90,8 @@ outbreak_word <- function(...) {
 
   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
                                                        dev.args = list(bg = 'transparent'),
-                                                       warning = FALSE))
+                                                       warning = FALSE,
+                                                       cache.path = cache_prefix))
 
 
   output_format(
