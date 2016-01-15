@@ -18,7 +18,7 @@ NULL
 outbreak <- function(self_contained = TRUE,
                                lib_dir = NULL,
                                keep_md = TRUE,
-                     ...) {
+                     cache_prefix = "cache/", ...) {
 
   outbreak_css <- pandoc_path_arg(system.file("outbreak-template.css", package = "ehastyle"))
   outbreak_template <- pandoc_path_arg(system.file("outbreak-template.html", package = "ehastyle"))
@@ -43,7 +43,8 @@ if(!("try-error" %in% class(last_commit))) {
 
   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
                                                        warning = FALSE,
-                                                       dev.args = list(bg = 'transparent')))
+                                                       dev.args = list(bg = 'transparent'),
+                                                       cache.path = cache_prefix))
 
 
   output_format(

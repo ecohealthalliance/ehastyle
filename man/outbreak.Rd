@@ -4,8 +4,7 @@
 \alias{outbreak}
 \title{R Markdown format for EHA Outbreak Scenarios Reports}
 \usage{
-outbreak(self_contained = TRUE, lib_dir = NULL, keep_md = TRUE,
-  fig.width = 6.14, ...)
+outbreak(self_contained = TRUE, lib_dir = NULL, keep_md = TRUE, ...)
 }
 \arguments{
 \item{lib_dir}{Local directory to copy assets}
