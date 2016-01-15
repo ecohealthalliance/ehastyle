@@ -532,6 +532,10 @@ div#container > div#sidebar {
     page-break-inside: avoid;
   }
 
+  table {
+    page-break-inside: avoid;
+  }
+
 div#container > div#footer {
   width: 21.59cm;
   height: 2cm;
