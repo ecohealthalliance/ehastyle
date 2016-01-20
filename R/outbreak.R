@@ -52,7 +52,7 @@ if(!("try-error" %in% class(last_commit))) {
     pandoc = outbreak_pan_opts,
     pre_processor =  function(metadata, input_file, runtime, knit_meta, files_dir, output_dir) {
       out_args = character()
-      default_contact = "For details on methods or analysis contact: P2modeling@ecohealthalliance.org"
+      default_contact = "For details on methods or analysis contact: P2modeling@\u200Becohealthalliance.org"
       hypothes_is = "https://github.com/ecohealthalliance/outbreak-scenarios"
       if(is.null(metadata$contact)) {
         out_args = c(out_args, "--variable", paste0("contact:", default_contact))
