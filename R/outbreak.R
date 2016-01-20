@@ -65,7 +65,7 @@ if(!("try-error" %in% class(last_commit))) {
         pandoc_self_contained_html(output_file, output_file)
        },
     keep_md = keep_md,
-    clean_supporting = TRUE,
+    clean_supporting = FALSE,
     base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = TRUE,
                                      template = outbreak_template, ...))
 }
