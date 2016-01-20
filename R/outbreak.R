@@ -66,7 +66,7 @@ if(!("try-error" %in% class(last_commit))) {
        },
     keep_md = keep_md,
     clean_supporting = FALSE,
-    base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = TRUE,
+    base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = FALSE,
                                      template = outbreak_template, ...))
 }
 #'
