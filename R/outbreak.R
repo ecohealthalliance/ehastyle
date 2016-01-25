@@ -69,60 +69,60 @@ if(!("try-error" %in% class(last_commit))) {
     base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = TRUE,
                                      template = outbreak_template, ...))
 }
-#'
-#' #' @import ReporteRs
-#' #' @export
-#' outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
-#'
-#'   outbreak_docx = system.file("template.docx", package = "ehastyle")
-#'
-#'   sidelogo <- system.file("sidebar.png", package = "ehastyle")
-#'   footer <- system.file("predictfooter.png", package="ehastyle")
-#'
-#'   default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
-#'
-#'   default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
-#'   last_commit = try(substr(git2r::commits()[[1]]@sha, 1, 7))
-#'
-#'   outbreak_csl <- pandoc_path_arg(system.file("chicago-fullnote-no-bibliography.csl", package="ehastyle"))
-#'
-#'
-#'   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
-#'                                                        dev.args = list(bg = 'transparent'),
-#'                                                        warning = FALSE,
-#'                                                        cache.path = cache_prefix))
-#'
-#'
-#'   output_format(
-#'     knitr = outbreak_knit_opts,
-#'     pandoc = pandoc_options(to="docx", args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE")),
-#'     post_processor = function(metadata, input_file, output_file, clean, verbose) {
-#'       doc = docx(title = metadata$title, template = outbreak_docx)
-#'       if(!is.null(metadata$title)) {
-#'         doc = addParagraph(doc, metadata$title, stylename="Title")
-#'       }
-#'
-#'       doc = addDocument(doc, output_file)
-#'       doc = addImage(doc, sidelogo, bookmark="logo", par.properties = parProperties(text.align = "left", padding=0), width=1.77, height = 6.031)
-#'       doc = addImage(doc, footer, bookmark="footer", par.properties = parProperties(text.align = "left", padding=0), width=8.5, height = 0.79)
-#'       #doc = deleteBookmark(doc, "start")
-#'       if(!is.null(metadata$date)) {
-#'         doc = addParagraph(doc, metadata$date, bookmark = "date", stylename="sidedate")
-#'       } else {
-#'         doc = addParagraph(doc, default_date, bookmark = "date", stylename="sidedate")
-#'       }
-#'
-#'       if(!is.null(metadata$contact)) {
-#'         doc = addParagraph(doc, metadata$contact, bookmark = "contact", stylename="sidedate")
-#'       } else {
-#'         doc = addParagraph(doc, "For details on methods or analysis contact: P2modeling@\u200Becohealthalliance.org", bookmark = "contact", stylename="sidedate")
-#'       }
-#'
-#'
-#'       writeDoc(doc, output_file)
-#'       return(output_file)
-#'     },
-#'     clean_supporting = TRUE,
-#'     keep_md=keep_md,
-#'     base_format = word_document(fig_caption = TRUE, reference_docx = outbreak_docx, ...))
-#' }
+
+#' @import ReporteRs
+#' @export
+outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
+
+  outbreak_docx = system.file("template.docx", package = "ehastyle")
+
+  sidelogo <- system.file("sidebar.png", package = "ehastyle")
+  footer <- system.file("predictfooter.png", package="ehastyle")
+
+  default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
+
+  default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
+  last_commit = try(substr(git2r::commits()[[1]]@sha, 1, 7))
+
+  outbreak_csl <- pandoc_path_arg(system.file("chicago-fullnote-no-bibliography.csl", package="ehastyle"))
+
+
+  outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
+                                                       dev.args = list(bg = 'transparent'),
+                                                       warning = FALSE,
+                                                       cache.path = cache_prefix))
+
+
+  output_format(
+    knitr = outbreak_knit_opts,
+    pandoc = pandoc_options(to="docx", args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE")),
+    post_processor = function(metadata, input_file, output_file, clean, verbose) {
+      doc = docx(title = metadata$title, template = outbreak_docx)
+      if(!is.null(metadata$title)) {
+        doc = addParagraph(doc, metadata$title, stylename="Title")
+      }
+
+      doc = addDocument(doc, output_file)
+      doc = addImage(doc, sidelogo, bookmark="logo", par.properties = parProperties(text.align = "left", padding=0), width=1.77, height = 6.031)
+      doc = addImage(doc, footer, bookmark="footer", par.properties = parProperties(text.align = "left", padding=0), width=8.5, height = 0.79)
+      #doc = deleteBookmark(doc, "start")
+      if(!is.null(metadata$date)) {
+        doc = addParagraph(doc, metadata$date, bookmark = "date", stylename="sidedate")
+      } else {
+        doc = addParagraph(doc, default_date, bookmark = "date", stylename="sidedate")
+      }
+
+      if(!is.null(metadata$contact)) {
+        doc = addParagraph(doc, metadata$contact, bookmark = "contact", stylename="sidedate")
+      } else {
+        doc = addParagraph(doc, "For details on methods or analysis contact: P2modeling@\u200Becohealthalliance.org", bookmark = "contact", stylename="sidedate")
+      }
+
+
+      writeDoc(doc, output_file)
+      return(output_file)
+    },
+    clean_supporting = TRUE,
+    keep_md=keep_md,
+    base_format = word_document(fig_caption = TRUE, reference_docx = outbreak_docx, ...))
+}
