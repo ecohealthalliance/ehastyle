@@ -439,9 +439,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.4568278"
-     inkscape:cx="-19.108833"
-     inkscape:cy="197.49518"
+     inkscape:zoom="1.2284139"
+     inkscape:cx="-138.61342"
+     inkscape:cy="261.54467"
      inkscape:document-units="cm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -450,10 +450,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1680"
-     inkscape:window-height="1006"
-     inkscape:window-x="40"
-     inkscape:window-y="87"
+     inkscape:window-width="1931"
+     inkscape:window-height="1137"
+     inkscape:window-x="-2"
+     inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:snap-text-baseline="true"
      showguides="true"
@@ -491,7 +491,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -571,7 +571,7 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:50.04180145px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:2.55100012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1"
+       style="font-style:normal;font-weight:bold;font-size:50.04125118px;line-height:125%;font-family:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:2.55100012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1;-inkscape-font-specification:'Montserrat, Bold';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
        x="-996.59113"
        y="83.055229"
        id="text10537"
@@ -581,10 +581,10 @@
          id="tspan10539"
          x="-996.59113"
          y="83.055229"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.04180145px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Bold';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:2.55100012;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1">OUTBREAK</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:50.04125118px;line-height:125%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';text-align:start;writing-mode:lr;text-anchor:start;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:2.55100012;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1;">OUTBREAK</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:50.04180145px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:1.25104499px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       style="font-style:normal;font-weight:normal;font-size:50.04125118px;line-height:125%;font-family:Montserrat;letter-spacing:0px;word-spacing:0px;fill:#57952f;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;-inkscape-font-specification:'Montserrat, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;"
        x="-918.95312"
        y="122.17934"
        id="text10543"
@@ -594,7 +594,7 @@
          id="tspan10545"
          x="-918.95312"
          y="122.17934"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;fill:#57952f;fill-opacity:1;stroke:#57952f;stroke-width:1.25104499px;stroke-opacity:1">SCENARIOS</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';fill:#57952f;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-opacity:1;font-size:50.04125118px;text-anchor:start;text-align:start;writing-mode:lr;line-height:125%;">SCENARIOS</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
