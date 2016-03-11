@@ -3,45 +3,44 @@
 <html xmlns="http://www.w3.org/1999/xhtml"$if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$>
 
 <head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  $for(author-meta)$
-  <meta name="author" content="$author-meta$">
-  $endfor$
-  $if(date-meta)$
-  <meta name="dcterms.date" content="$date-meta$">
-  $endif$
-  $if(keywords)$
-  <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
-  $endif$
-  <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
-  <style type="text/css">code{white-space: pre;}</style>
-  $if(quotes)$
-  <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
-  $endif$
-  $if(highlighting-css)$
-  <style type="text/css">
-  $highlighting-css$
-  </style>
-  $endif$
-  $for(css)$
-  <link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
-  $endfor$
-  $if(math)$
-  $math$
-  $endif$
-  <!--[if lt IE 9]>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-  $for(header-includes)$
-  $header-includes$
-  $endfor$
+<meta charset="utf-8">
+<meta name="generator" content="pandoc">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+$for(author-meta)$
+<meta name="author" content="$author-meta$">
+$endfor$
+$if(date-meta)$
+<meta name="dcterms.date" content="$date-meta$">
+$endif$
+$if(keywords)$
+<meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$">
+$endif$
+<title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+<style type="text/css">code{white-space: pre;}</style>
+$if(quotes)$
+<style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
+$endif$
+$if(highlighting-css)$
+<style type="text/css">
+$highlighting-css$
+</style>
+$endif$
+$for(css)$
+<link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
+$endfor$
+$if(math)$
+$math$
+$endif$
+<!--[if lt IE 9]>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+<![endif]-->
+$for(header-includes)$
+$header-includes$
+$endfor$
 <!--  $if(hypothes_is)$
-  <link rel="canonical" href="$hypothes_is$"/>
-  $endif$ -->
-  </head>
-
+<link rel="canonical" href="$hypothes_is$"/>
+$endif$ -->
+</head>
 <body>
 
 $if(hypothes_is)$
@@ -50,91 +49,91 @@ $if(hypothes_is)$
 $endif$
 
 <svg style="display:none;">
-  <symbol id="icon-printer" viewBox="0 0 1024 1024">
-  	<title>printer</title>
-  	<path class="path1" d="M256 64h512v128h-512v-128z"></path>
-  	<path class="path2" d="M960 256h-896c-35.2 0-64 28.8-64 64v320c0 35.2 28.794 64 64 64h192v256h512v-256h192c35.2 0 64-28.8 64-64v-320c0-35.2-28.8-64-64-64zM128 448c-35.346 0-64-28.654-64-64s28.654-64 64-64 64 28.654 64 64-28.652 64-64 64zM704 896h-384v-320h384v320z" fill="currentColor"></path>
-  </symbol>
-  <symbol id="twitter-icon" viewBox="0 0 32 32">
-    <path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z" fill="currentColor"></path>
-  </symbol>
+<symbol id="icon-printer" viewBox="0 0 1024 1024">
+<title>printer</title>
+<path class="path1" d="M256 64h512v128h-512v-128z"></path>
+<path class="path2" d="M960 256h-896c-35.2 0-64 28.8-64 64v320c0 35.2 28.794 64 64 64h192v256h512v-256h192c35.2 0 64-28.8 64-64v-320c0-35.2-28.8-64-64-64zM128 448c-35.346 0-64-28.654-64-64s28.654-64 64-64 64 28.654 64 64-28.652 64-64 64zM704 896h-384v-320h384v320z" fill="currentColor"></path>
+</symbol>
+<symbol id="twitter-icon" viewBox="0 0 32 32">
+<path d="M32 6.076c-1.177 0.522-2.443 0.875-3.771 1.034 1.355-0.813 2.396-2.099 2.887-3.632-1.269 0.752-2.674 1.299-4.169 1.593-1.198-1.276-2.904-2.073-4.792-2.073-3.626 0-6.565 2.939-6.565 6.565 0 0.515 0.058 1.016 0.17 1.496-5.456-0.274-10.294-2.888-13.532-6.86-0.565 0.97-0.889 2.097-0.889 3.301 0 2.278 1.159 4.287 2.921 5.465-1.076-0.034-2.088-0.329-2.974-0.821-0.001 0.027-0.001 0.055-0.001 0.083 0 3.181 2.263 5.834 5.266 6.437-0.551 0.15-1.131 0.23-1.73 0.23-0.423 0-0.834-0.041-1.235-0.118 0.835 2.608 3.26 4.506 6.133 4.559-2.247 1.761-5.078 2.81-8.154 2.81-0.53 0-1.052-0.031-1.566-0.092 2.905 1.863 6.356 2.95 10.064 2.95 12.076 0 18.679-10.004 18.679-18.68 0-0.285-0.006-0.568-0.019-0.849 1.283-0.926 2.396-2.082 3.276-3.398z" fill="currentColor"></path>
+</symbol>
 </svg>
 
 
-  $if(draft)$
-    <script async defer src="http://hypothes.is/embed.js"></script>
-    <script>window.hypothesisConfig=function() {
-      return {
-        showHighlights:true,
-        firstRun: true
-      };
-        </script>
-  $endif$
-  <div id="container">
+$if(draft)$
+<script async defer src="http://hypothes.is/embed.js"></script>
+<script>window.hypothesisConfig=function() {
+return {
+showHighlights:true,
+firstRun: true
+};
+</script>
+$endif$
+<div id="container">
 
- <div id="sidebar">
-   $if(sidelogo)$
-    <div id="sideimg"><img src="$sidelogo$"></div>
-   $endif$
-    <div id="sidetxt"></div>
-    <div id="authorblock">
-    $for(author)$
-      <p class="author">$author$</p>
-    $endfor$
+<div id="sidebar">
+$if(sidelogo)$
+<div id="sideimg"><img src="$sidelogo$"></div>
+$endif$
+<div id="sidetxt"></div>
+<div id="authorblock">
+$for(author)$
+<p class="author">$author$</p>
+$endfor$
 
-    $if(date)$
-      <p class="date">$date$</p>
-    $else$
-      $if(default_date)$
-      <p class="date">$default_date$</p>
-      $endif$
-    $endif$
-    $if(draft)$
-    $if(last_commit)$
-      <p class="date">Version: $last_commit$</p>
-    $endif$
-    $endif$
-    $if(contact)$
-      <p class="date">$contact$</p>
-    $endif$
-    </div>
-  </div>
+$if(date)$
+<p class="date">$date$</p>
+$else$
+$if(default_date)$
+<p class="date">$default_date$</p>
+$endif$
+$endif$
+$if(draft)$
+$if(last_commit)$
+<p class="date">Version: $last_commit$</p>
+$endif$
+$endif$
+$if(contact)$
+<p class="date">$contact$</p>
+$endif$
+</div>
+</div>
 
-  $if(title)$
-    <div id="title">
-      <h1 class="title">$title$</h1>
-      $if(subtitle)$
-        <h1 class="subtitle">$subtitle$</h1>
-      $endif$
-    </div>
-  $endif$
+$if(title)$
+<div id="title">
+<h1 class="title">$title$</h1>
+$if(subtitle)$
+<h1 class="subtitle">$subtitle$</h1>
+$endif$
+</div>
+$endif$
 
-  $if(toc)$
-    <nav id="$idprefix$TOC">
-    $toc$
-    </nav>
-  $endif$
+$if(toc)$
+<nav id="$idprefix$TOC">
+$toc$
+</nav>
+$endif$
 
-  $if(summary)$
-  <div id="summary">
-    $summary$
-  </div>
-  $endif$
+$if(summary)$
+<div id="summary">
+$summary$
+</div>
+$endif$
 
-  $for(include-before)$
-    $include-before$
-  $endfor$
+$for(include-before)$
+$include-before$
+$endfor$
 
-  $body$
+$body$
 
-  $for(include-after)$
-    $include-after$
-  $endfor$
+$for(include-after)$
+$include-after$
+$endfor$
 
 
 $if(footer)$
 <div id="footer">
-  <img src="$footer$">
+<img src="$footer$">
 </div>
 $endif$
 
@@ -143,14 +142,14 @@ $endif$
 $if(mathjax-url)$
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "$mathjax-url$";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.src  = "$mathjax-url$";
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
 </script>
 $endif$
 
-  </body>
-  </html>
+</body>
+</html>
