@@ -35,7 +35,7 @@ outbreak <- function(self_contained = TRUE,
 
   last_commit = try(substr(git2r::commits()[[1]]@sha, 1, 7))
 
-  outbreak_pan_opts <- pandoc_options(to="html", ext=".html", args = c("--css", outbreak_css, "--section-divs", "--template", outbreak_template, "--variable", paste0("default_date:", default_date), "--variable", paste0("sidelogo:", sidelogo),  "--variable", paste0("footer:", footer), "--variable", "mathjax-url:https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"))
+  outbreak_pan_opts <- pandoc_options(to="html", ext=".html", args = c("--css", outbreak_css, "--section-divs", "--template", outbreak_template, "--variable", paste0("default_date:", default_date), "--variable", paste0("sidelogo:", sidelogo),  "--variable", paste0("footer:", footer), "--variable", "mathjax-url:https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML", "--csl", outbreak_csl))
 
 if(!("try-error" %in% class(last_commit))) {
   outbreak_pan_opts = c(outbreak_pan_opts, "--variable", paste0("last_commit:", last_commit))
@@ -95,11 +95,14 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
 
   output_format(
     knitr = outbreak_knit_opts,
-    pandoc = pandoc_options(to="docx", args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE")),
+    pandoc = pandoc_options(to="docx", args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl)),
     post_processor = function(metadata, input_file, output_file, clean, verbose) {
       doc = docx(title = metadata$title, template = outbreak_docx)
       if(!is.null(metadata$title)) {
         doc = addParagraph(doc, metadata$title, stylename="Title")
+      }
+      if(!is.null(metadata$summary)) {
+        doc = addParagraph(doc, metadata$summary, stylename="Abstract")
       }
 
       doc = addDocument(doc, output_file)
