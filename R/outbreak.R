@@ -23,7 +23,7 @@ outbreak <- function(self_contained = TRUE,
   outbreak_css <- pandoc_path_arg(system.file("outbreak-template.css", package = "ehastyle"))
   outbreak_template <- pandoc_path_arg(system.file("outbreak-template.html", package = "ehastyle"))
   outbreak_writer <- pandoc_path_arg(system.file("outbreak.lua", package = "ehastyle"))
-  outbreak_csl <- pandoc_path_arg(system.file("chicago-fullnote-no-bibliography.csl", package="ehastyle"))
+  outbreak_csl <- pandoc_path_arg(system.file("elsevier-with-titles.csl", package="ehastyle"))
 
   #file.copy(outbreak_writer, file.path(getwd(), "outbreak.lua"))
 
@@ -84,7 +84,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
   default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
   last_commit = try(substr(git2r::commits()[[1]]@sha, 1, 7))
 
-  outbreak_csl <- pandoc_path_arg(system.file("chicago-fullnote-no-bibliography.csl", package="ehastyle"))
+  outbreak_csl <- pandoc_path_arg(system.file("elsevier-with-titles.csl", package="ehastyle"))
 
 
   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
