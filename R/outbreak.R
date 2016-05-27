@@ -72,11 +72,16 @@ if(!("try-error" %in% class(last_commit))) {
 
 #' @import ReporteRs
 #' @export
-outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
+outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, proposal=FALSE, ...) {
 
-  outbreak_docx = system.file("template.docx", package = "ehastyle")
+  outbreak_docx = ifelse(proposal,
+                         system.file("template-proposal.docx", package = "ehastyle"),
+                         system.file("template.docx", package = "ehastyle"))
 
-  sidelogo <- system.file("sidebar.png", package = "ehastyle")
+  sidelogo <- ifelse(proposal,
+                     system.file("sidebar-proposal.png", package = "ehastyle"),
+                     system.file("sidebar.png", package = "ehastyle"))
+
   footer <- system.file("predictfooter.png", package="ehastyle")
 
   default_date = as.character.Date(Sys.Date(), format = "%B %d, %Y")
@@ -107,7 +112,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, ...) {
 
       doc = addDocument(doc, output_file)
       doc = addImage(doc, sidelogo, bookmark="logo", par.properties = parProperties(text.align = "left", padding=0), width=1.77, height = 6.031)
-      doc = addImage(doc, footer, bookmark="footer", par.properties = parProperties(text.align = "left", padding=0), width=8.5, height = 0.79)
+      doc = addImage(doc, footer, bookmark="footer", par.properties = parProperties(text.align = "left", padding=0), width=8, height = 0.73)
       #doc = deleteBookmark(doc, "start")
       if(!is.null(metadata$date)) {
         doc = addParagraph(doc, metadata$date, bookmark = "date", stylename="sidedate")
