@@ -439,9 +439,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2284139"
-     inkscape:cx="111.05552"
-     inkscape:cy="275.71772"
+     inkscape:zoom="6.9489584"
+     inkscape:cx="52.612802"
+     inkscape:cy="501.36886"
      inkscape:document-units="cm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -456,10 +456,10 @@
      inkscape:window-y="1"
      inkscape:window-maximized="1"
      inkscape:snap-text-baseline="true"
-     showguides="false"
+     showguides="true"
      inkscape:guide-bbox="true">
     <sodipodi:guide
-       position="-16.140586,148.72982"
+       position="-2.0351445,13.024925"
        orientation="0,1"
        id="guide7122" />
     <sodipodi:guide
@@ -482,6 +482,12 @@
        position="-843.22329,339.21935"
        orientation="0,1"
        id="guide4267" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid4362"
+       units="cm"
+       spacingx="35.433067"
+       spacingy="35.43307" />
   </sodipodi:namedview>
   <metadata
      id="metadata4762">
@@ -1106,30 +1112,30 @@
          x="971.16443"
          y="745.04431"> Surveillance and policy support from PREDICT Modeling &amp; Analytics</tspan></text>
     <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36.97675705px;line-height:89.99999762%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       x="-914.85828"
-       y="77.458923"
-       id="text4639"
+       transform="matrix(0,-1,1,0,0,0)"
        sodipodi:linespacing="89.999998%"
-       transform="matrix(0,-1,1,0,0,0)"><tspan
-         sodipodi:role="line"
-         id="tspan4641"
-         x="-914.85828"
-         y="77.458923"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:36.97675705px;line-height:89.99999762%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-opacity:1">MODELING &amp; ANALYTICS</tspan></text>
+       id="text4354"
+       y="112.70848"
+       x="-943.34186"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.84128952px;line-height:89.99999762%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:34.84128952px;line-height:89.99999762%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Normal';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:none;stroke-width:1.25104499px;stroke-opacity:1"
+         y="112.70848"
+         x="-943.34186"
+         id="tspan4356"
+         sodipodi:role="line">PROPOSED PROJECT PLAN</tspan></text>
     <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:125%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:#626262;stroke-width:2.55100012;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1;"
-       x="-863.35712"
-       y="123.366"
-       id="text4421"
+       transform="matrix(0,-1,1,0,0,0)"
        sodipodi:linespacing="125%"
-       transform="matrix(0,-1,1,0,0,0)"><tspan
-         sodipodi:role="line"
-         id="tspan4423"
-         x="-863.35712"
-         y="123.366"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:40px;line-height:125%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:#626262;stroke-width:2.55100012;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1;">DRAFT PROPOSAL</tspan></text>
+       id="text4358"
+       y="76.740036"
+       x="-942.30206"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:38.40139771px;line-height:125%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:#626262;stroke-width:2.44904971;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:38.40139771px;line-height:125%;font-family:Montserrat;-inkscape-font-specification:'Montserrat, Bold';text-align:start;writing-mode:lr-tb;text-anchor:start;fill:#626262;fill-opacity:1;stroke:#626262;stroke-width:2.44904971;stroke-miterlimit:15.19999981;stroke-dasharray:none;stroke-opacity:1"
+         y="76.740036"
+         x="-942.30206"
+         id="tspan4360"
+         sodipodi:role="line">MODELING &amp; ANALYTICS</tspan></text>
   </g>
 </svg>
