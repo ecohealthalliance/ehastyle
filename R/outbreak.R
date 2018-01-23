@@ -78,7 +78,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, proposal=FALSE
                          system.file("template-proposal.docx", package = "ehastyle"),
                          system.file("template.docx", package = "ehastyle"))
 
-  pb_filter <- pandoc_path_arg(system.file("pagebreak", package="ehastyle"))
+  pb_filter <- pandoc_path_arg(system.file("pagebreak.R", package="ehastyle"))
   sidelogo <- ifelse(proposal,
                      system.file("sidebar-proposal.png", package = "ehastyle"),
                      system.file("sidebar.png", package = "ehastyle"))
@@ -101,7 +101,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, proposal=FALSE
 
   output_format(
     knitr = outbreak_knit_opts,
-    pandoc = pandoc_options(to="docx", args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl, "--filter", pb_filter)),
+    pandoc = pandoc_options(to="docx", c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl,  "--filter", pb_filter)),
     post_processor = function(metadata, input_file, output_file, clean, verbose) {
       doc = docx(title = metadata$title, template = outbreak_docx)
       if(!is.null(metadata$title)) {
