@@ -101,7 +101,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, proposal=FALSE
 
   output_format(
     knitr = outbreak_knit_opts,
-    pandoc = pandoc_options(to="docx", c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl,  "--filter", pb_filter)),
+    pandoc = pandoc_options(to="docx", from=rmarkdown_format(), args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl, "--filter", pb_filter)),
     post_processor = function(metadata, input_file, output_file, clean, verbose) {
       doc = docx(title = metadata$title, template = outbreak_docx)
       if(!is.null(metadata$title)) {
