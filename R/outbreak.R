@@ -81,7 +81,8 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md=FALSE, proposal=FALSE
   pb_filter <- pandoc_path_arg(system.file("pagebreak.R", package="ehastyle"))
   sidelogo <- ifelse(proposal,
                      system.file("sidebar-proposal.png", package = "ehastyle"),
-                     system.file("sidebar.png", package = "ehastyle"))
+                     ifelse(usaid,system.file("sidebar_usaid.png", package = "ehastyle"),
+                     system.file("sidebar.png", package = "ehastyle")))
 
   footer <- system.file("predictfooter.png", package="ehastyle")
 
