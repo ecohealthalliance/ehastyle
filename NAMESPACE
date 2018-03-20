@@ -3,6 +3,7 @@
 export(eha_letter)
 export(outbreak)
 export(outbreak_word)
+export(usaid_word)
 import(ReporteRs)
 import(knitr)
 import(rmarkdown)
