@@ -8,6 +8,8 @@ outbreak(self_contained = TRUE, lib_dir = NULL, keep_md = FALSE,
   cache_prefix = "cache/", ...)
 }
 \arguments{
+\item{self_contained}{Include all dependencies}
+
 \item{lib_dir}{Local directory to copy assets}
 
 \item{keep_md}{Keep knitr-generated markdown}
@@ -22,6 +24,5 @@ output formatter}
 \item{pandoc_args}{Other arguments to pass to pandoc}
 }
 \description{
-#' @param self_contained Include all dependencies
+R Markdown format for EHA Outbreak Scenarios Reports
 }
-
