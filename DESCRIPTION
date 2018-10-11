@@ -8,5 +8,5 @@ Description: Contains R Markdown templates and ggplot2 themes suitable for EHA w
 License: MIT
 LazyData: TRUE
 Imports: knitr, rmarkdown, ReporteRs, linl
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)

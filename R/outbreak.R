@@ -32,9 +32,9 @@ outbreak <- function(self_contained = TRUE, lib_dir = NULL, keep_md = FALSE, cac
 
   outbreak_pan_opts <- pandoc_options(to="html", ext=".html", args = c("--css", outbreak_css, "--section-divs", "--template", outbreak_template, "--variable", paste0("default_date:", default_date), "--variable", paste0("sidelogo:", sidelogo),  "--variable", paste0("footer:", footer), "--variable", "mathjax-url:https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML", "--csl", outbreak_csl))
 
-if(!("try-error" %in% class(last_commit))) {
-  outbreak_pan_opts = c(outbreak_pan_opts, "--variable", paste0("last_commit:", last_commit))
-}
+  if(!("try-error" %in% class(last_commit))) {
+    outbreak_pan_opts = c(outbreak_pan_opts, "--variable", paste0("last_commit:", last_commit))
+  }
 
   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
                                                        warning = FALSE,
@@ -55,17 +55,18 @@ if(!("try-error" %in% class(last_commit))) {
       out_args = c(out_args, "--variable", paste0("hypothes_is:", hypothes_is))
       return(out_args)
     },
-     post_processor = function(metadata, input_file, output_file, clean, verbose) {
-     #   file.remove("outbreak.lua")
-        pandoc_self_contained_html(output_file, output_file)
-       },
+    post_processor = function(metadata, input_file, output_file, clean, verbose) {
+      #   file.remove("outbreak.lua")
+      pandoc_self_contained_html(output_file, output_file)
+    },
     keep_md = keep_md,
     clean_supporting = TRUE,
     base_format = html_document_base(smart = TRUE, theme = NULL, mathjax = NULL, self_contained = TRUE,
                                      template = outbreak_template, ...))
 }
 
-#' @import ReporteRs
+#' @import officer
+#' @import magrittr
 #' @export
 outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = FALSE, ...) {
 
@@ -74,6 +75,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = F
                          system.file("template.docx", package = "ehastyle"))
 
   pb_filter <- pandoc_path_arg(system.file("pagebreak.R", package="ehastyle"))
+
   sidelogo <- ifelse(proposal,
                      system.file("sidebar-proposal.png", package = "ehastyle"),
                      system.file("sidebar.png", package = "ehastyle"))
@@ -85,7 +87,6 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = F
 
   outbreak_csl <- pandoc_path_arg(system.file("elsevier-with-titles.csl", package="ehastyle"))
 
-
   outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi=300,
                                                        dev.args = list(bg = 'transparent'),
                                                        warning = FALSE,
@@ -96,105 +97,49 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = F
     knitr = outbreak_knit_opts,
     pandoc = pandoc_options(to="docx", from=rmarkdown_format(), args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl, "--filter", pb_filter)),
     post_processor = function(metadata, input_file, output_file, clean, verbose) {
-      doc = docx(title = metadata$title, template = outbreak_docx)
+
+      # create new office doc
+      doc = read_docx(path = outbreak_docx)
+
+      # add title and abstract
       if(!is.null(metadata$title)) {
-        doc = addParagraph(doc, metadata$title, stylename="Title")
+        doc %<>% body_add_par(metadata$title, style="Title")
       }
       if(!is.null(metadata$summary)) {
-        doc = addParagraph(doc, metadata$summary, stylename="Abstract")
+        doc %<>% body_add_par(metadata$summary, style="Abstract")
       }
 
-      doc = addDocument(doc, output_file)
-      doc = addImage(doc, sidelogo, bookmark="logo", par.properties = parProperties(text.align = "left", padding=0), width=1.77, height = 6.031)
-      doc = addImage(doc, footer, bookmark="footer", par.properties = parProperties(text.align = "left", padding=0), width=8, height = 0.73)
-      #doc = deleteBookmark(doc, "start")
+      #doc1 = addDocument(doc1, "test.docx")
+
+      # add side logo
+      doc %<>% body_replace_img_at_bkm(bookmark = "logo", value=external_img(src = sidelogo, width=1.77, height = 6.031))
+
+      # add footer image
+      doc %<>% body_replace_img_at_bkm(bookmark = "footer", value=external_img(src = footer, width=8, height = 0.73))
+
+      # add date
       if(!is.null(metadata$date)) {
-        doc = addParagraph(doc, metadata$date, bookmark = "date", stylename="sidedate")
+        doc %<>%
+          body_replace_text_at_bkm(bookmark = "date", value = metadata$date)
       } else {
-        doc = addParagraph(doc, default_date, bookmark = "date", stylename="sidedate")
+        doc %<>%
+          body_replace_text_at_bkm(bookmark = "date", value = default_date)
       }
 
+      # add contact info
       if(!is.null(metadata$contact)) {
-        doc = addParagraph(doc, metadata$contact, bookmark = "contact", stylename="sidedate")
+        doc %<>%
+          body_replace_text_at_bkm(bookmark = "contact", value = metadata$contact)
       } else {
-        doc = addParagraph(doc, "For details on methods or analysis contact: PREDICTmodeling@\u200Becohealthalliance.org", bookmark = "contact", stylename="sidedate")
+        doc %<>%
+          body_replace_text_at_bkm(bookmark = "contact", value = "For details on methods or analysis contact: PREDICTmodeling@\u200Becohealthalliance.org")
       }
 
-
-      writeDoc(doc, output_file)
+      # save document
+      print(doc, target=output_file)
       return(output_file)
     },
     clean_supporting = TRUE,
     keep_md=keep_md,
     base_format = word_document(fig_caption = TRUE, reference_docx = outbreak_docx, ...))
-}
-
-#' @export
-usaid_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = FALSE, usaid_panel = 1, ...) {
-
-  usaid_docx <- ifelse(proposal,
-                       system.file("template-proposal.docx", package = "ehastyle"),
-                       system.file("template-usaid.docx", package = "ehastyle"))
-
-  pb_filter <- pandoc_path_arg(system.file("pagebreak.R", package = "ehastyle"))
-
-  sidelogo <- system.file("sidebar_usaid.png", package = "ehastyle")
-  if(usaid_panel == 2)
-    {sidelogo <- system.file("sidebar_usaid2.png", package = "ehastyle")}
-  if(usaid_panel == 3)
-    {sidelogo <- system.file("sidebar_usaid3.png", package = "ehastyle")}
-  if(usaid_panel == 4)
-    {sidelogo <- system.file("sidebar_usaid4.png", package = "ehastyle")}
-  if(proposal == TRUE)
-    {sidelogo <- system.file("sidebar-proposal.png", package = "ehastyle")}
-
-  footer <- system.file("predictfooter.png", package = "ehastyle")
-
-  default_date <- as.character.Date(Sys.Date(), format = "%B %d, %Y")
-  last_commit <- try(substr(git2r::commits()[[1]]@sha, 1, 7))
-
-  outbreak_csl <- pandoc_path_arg(system.file("elsevier-with-titles.csl", package = "ehastyle"))
-
-
-  outbreak_knit_opts <- knitr_options(opts_chunk= list(dev = 'png', dpi = 300,
-                                                       dev.args = list(bg = 'transparent'),
-                                                       warning = FALSE,
-                                                       cache.path = cache_prefix))
-
-  output_format(
-    knitr = outbreak_knit_opts,
-    pandoc = pandoc_options(to = "docx", from = rmarkdown_format(), args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl, "--filter", pb_filter)),
-    post_processor = function(metadata, input_file, output_file, clean, verbose) {
-      doc = docx(title = metadata$title, template = usaid_docx)
-
-      if(!is.null(metadata$title)) {
-        doc = addParagraph(doc, metadata$title, stylename = "Title")
-      }
-      if(!is.null(metadata$summary)) {
-        doc = addParagraph(doc, metadata$summary, stylename = "Abstract")
-      }
-
-      doc = addDocument(doc, output_file)
-      doc = addImage(doc, sidelogo, bookmark = "logo", par.properties = parProperties(text.align = "left", padding = 0), width = 1.77, height = 6.031)
-      doc = addImage(doc, footer, bookmark = "footer", par.properties = parProperties(text.align = "left", padding = 0), width = 8, height = 0.73)
-      #doc = deleteBookmark(doc, "start")
-
-      if(!is.null(metadata$date)) {
-        doc = addParagraph(doc, metadata$date, bookmark = "date", stylename = "sidedate")
-      } else {
-        doc = addParagraph(doc, default_date, bookmark = "date", stylename = "sidedate")
-      }
-
-      if(!is.null(metadata$contact)) {
-        doc = addParagraph(doc, metadata$contact, bookmark = "contact", stylename = "sidedate")
-      } else {
-        doc = addParagraph(doc, "For details on methods or analysis contact: PREDICTmodeling@\u200Becohealthalliance.org", bookmark = "contact", stylename = "sidedate")
-      }
-
-      writeDoc(doc, output_file)
-      return(output_file)
-    },
-    clean_supporting = TRUE,
-    keep_md = keep_md,
-    base_format = word_document(fig_caption = TRUE, reference_docx = usaid_docx, ...))
 }
