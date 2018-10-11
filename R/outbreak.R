@@ -68,17 +68,21 @@ outbreak <- function(self_contained = TRUE, lib_dir = NULL, keep_md = FALSE, cac
 #' @import officer
 #' @import magrittr
 #' @export
-outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = FALSE, ...) {
+outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = FALSE, usaid = FALSE, usaid_panel = 1, ...) {
 
   outbreak_docx = ifelse(proposal,
                          system.file("template-proposal.docx", package = "ehastyle"),
-                         system.file("template.docx", package = "ehastyle"))
+                         ifelse(usaid,
+                                system.file("template-usaid.docx", package = "ehastyle"),
+                                system.file("template.docx", package = "ehastyle")))
 
   pb_filter <- pandoc_path_arg(system.file("pagebreak.R", package="ehastyle"))
 
   sidelogo <- ifelse(proposal,
                      system.file("sidebar-proposal.png", package = "ehastyle"),
-                     system.file("sidebar.png", package = "ehastyle"))
+                     ifelse(usaid,
+                            system.file(paste0("sidebar_usaid", usaid_panel, ".png"), package = "ehastyle"),
+                            system.file("sidebar.png", package = "ehastyle")))
 
   footer <- system.file("predictfooter.png", package="ehastyle")
 
@@ -98,7 +102,7 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = F
     pandoc = pandoc_options(to="docx", from=rmarkdown_format(), args = c("--metadata", "date:FALSE", "--metadata", "author:FALSE", "--metadata", "title:FALSE", "--csl", outbreak_csl, "--filter", pb_filter)),
     post_processor = function(metadata, input_file, output_file, clean, verbose) {
 
-      # create new office doc
+      # create new officer doc
       doc = read_docx(path = outbreak_docx)
 
       # add title and abstract
@@ -109,7 +113,8 @@ outbreak_word <- function(cache_prefix = "cache/", keep_md = FALSE, proposal = F
         doc %<>% body_add_par(metadata$summary, style="Abstract")
       }
 
-      #doc1 = addDocument(doc1, "test.docx")
+      # insert external docx
+      doc %<>% body_add_docx(output_file)
 
       # add side logo
       doc %<>% body_replace_img_at_bkm(bookmark = "logo", value=external_img(src = sidelogo, width=1.77, height = 6.031))
