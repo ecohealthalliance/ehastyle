@@ -7,6 +7,6 @@ Maintainer: Noam Ross <ross@ecohealthalliance.org>
 Description: Contains R Markdown templates and ggplot2 themes suitable for EHA work
 License: MIT
 LazyData: TRUE
-Imports: knitr, rmarkdown, ReporteRs, linl
+Imports: knitr, rmarkdown, officer, magrittr, linl
 RoxygenNote: 6.1.0
 Roxygen: list(markdown = TRUE)
