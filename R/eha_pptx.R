@@ -1,8 +1,8 @@
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @export
 eha_pptx <- function(aspect = "16x9",
-                     toc = FALSE, toc_depth = 2, fig_width = 5,
-                     fig_height = 4, fig_caption = TRUE, df_print = "default",
+                     toc = FALSE, toc_depth = 2, fig_width = 9.4,
+                     fig_height = 4.24, fig_caption = TRUE, df_print = "default",
                      keep_md = FALSE, cache_prefix = "cache/",
                      smart = TRUE, md_extensions = NULL,
                      slide_level = NULL,  pandoc_args = NULL) {
@@ -16,7 +16,7 @@ eha_pptx <- function(aspect = "16x9",
   }
 
   eha_pptx_knit_opts <- knitr_options(opts_chunk = list(dev = 'png', dpi = 300,
-                                                       dev.args = list(bg = 'transparent'),
+                                                       dev.args = list(bg = 'white'),
                                                        warning = FALSE,
                                                        fig.width = fig_width, fig.height = fig_height,
                                                        cache.path = cache_prefix))

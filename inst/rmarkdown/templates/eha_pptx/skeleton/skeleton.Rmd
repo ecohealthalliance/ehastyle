@@ -10,6 +10,8 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+library(ggplot2)
+library(ehastyle)
 ```
 
 ## R Markdown
@@ -34,5 +36,18 @@ summary(cars)
 
 ```{r pressure, fig.width=13.3333, fig.height=7.5}
 plot(pressure)
+```
+
+## Slide with EHA ggplot
+
+```{r}
+library(ggplot2)
+ggplot(mtcars, aes(wt, mpg), col = displ) +
+  geom_point() +
+  theme_eha() +
+  labs(x = "omg this is very much the x axis",
+    y = "yes definitely this indeed is the y axis",
+    title = "Testing Testing: here's the thing"
+    )
 ```
 
