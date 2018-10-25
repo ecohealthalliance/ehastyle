@@ -5,7 +5,6 @@ author: Your Name
 output:
   ehastyle::eha_pptx:
     aspect: 16x9
-    keep_md: true
 ---
 
 ```{r setup, include=FALSE}
@@ -43,11 +42,6 @@ plot(pressure)
 ```{r}
 library(ggplot2)
 ggplot(mtcars, aes(wt, mpg), col = displ) +
-  geom_point() +
-  theme_eha() +
-  labs(x = "omg this is very much the x axis",
-    y = "yes definitely this indeed is the y axis",
-    title = "Testing Testing: here's the thing"
-    )
+  geom_point()
 ```
 
