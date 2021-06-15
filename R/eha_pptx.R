@@ -1,5 +1,5 @@
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
-#' @importFrom officer read_pptx on_slide ph_with_img_at
+#' @importFrom officer read_pptx on_slide ph_with external_img
 #' @export
 eha_pptx <- function(aspect = "16x9",
                      toc = FALSE, toc_depth = 2, fig_width = 9.4,
@@ -39,14 +39,30 @@ eha_pptx <- function(aspect = "16x9",
     pf <- read_pptx(output_file)
     if (pf$slide$get_slide(1)$get_metadata()$layout_file == "../slideLayouts/slideLayout1.xml") {
       pf <- on_slide(pf, 1)
+      eha_logo_path <- system.file("eha_title_logo.png",
+                                   package = "ehastyle")
       if (aspect == "16x9") {
-        pf <- ph_with_img_at(pf,
-                             system.file("eha_title_logo.png", package = "ehastyle"),
-                             left = 1.1, top = 0.89, width = 8.7, height = 2.24)
+        # ph_with_img_at was removed from the officer package. Now use
+        # external_img and ph_with
+        eha_logo_169 <- external_img(src = eha_logo_path,
+                                     width = 8.7,
+                                     height = 2.24,
+                                     alt = "eha-logo"
+        )
+
+        pf <- ph_with(pf, eha_logo_169,
+                      left = 1.1, top = 0.89)
       } else if (aspect == "4x3") {
-        pf <- ph_with_img_at(pf,
-                             system.file("eha_title_logo.png", package = "ehastyle"),
-                             left = 0.82, top = 1.22, width = 6.52, height = 1.68)
+
+        eha_logo_43 <- external_img(src = eha_logo_path,
+                                    width = 6.52,
+                                    height = 1.68,
+                                    alt = "eha-logo"
+        )
+
+        pf <- ph_with(pf,
+                       eha_logo_43,
+                       left = 0.82, top = 1.22)
       }
     }
     print(pf, target = output_file)
