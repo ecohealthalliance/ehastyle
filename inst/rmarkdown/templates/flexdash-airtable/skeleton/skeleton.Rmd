@@ -1,0 +1,214 @@
+---
+title: "Template Title"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    logo: eha_logo.png
+    favicon: eha_logo.png
+    theme:
+      base_font: !expr bslib::font_face("Avenir", style = "normal", weight = "500",  src = "url(https://webfonts.brand.ucsb.edu/Avenir/AvenirLTW04-85Heavy.woff2) format(\"woff2\")")
+      bg: "#224A55"
+      fg: "#5EB9D6"
+      primary: "#97C83E"
+      secondary: "#B0A28A"
+---
+
+<!--
+In between these markers we can place comments.
+
+We are using the `flexdashboard` package here to lay out the report. More info
+on this can be found at https://rmarkdown.rstudio.com/flexdashboard/
+
+-->
+
+```{r setup, include=FALSE}
+# Make sure you have installed the dev version of bslib
+# remotes::install_github('rstudio/bslib')
+
+# You'll want the `airtabler` package to interface with AirTable. Get it by
+# running remotes::install_github('bergant/airtabler')
+library(airtabler) 
+
+
+
+# Other packages
+library(ggplot2)        # plotting tools
+library(dplyr)          # data manipulation tools
+library(lubridate)      # Date/time manipulation
+library(janitor)        # Useful functions for cleaning data
+library(flexdashboard)  # For laying out the repot
+library(leaflet)        # For making maps
+library(glue)           # Helpful for making labels
+library(ggiraph)        # For interactive ggplots
+# Don't display the code in the dashboard
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r fetch-data}
+app_id <- "appx934RcLSJLZCXh"  # The ID for the base we're fetching
+
+# In general `airtabler` functions get 100 records at a time, this function
+# simplifies this.  We will incorporate this into our custom R package in the
+# future
+fetch_all <- function(app_id, table, ...) {
+  out <- list()
+  out[[1]] <- air_get(app_id, table, combined_result = FALSE)
+  offset <- get_offset(out[[1]])
+  while (!is.null(offset)) {
+    out <- c(out, list(air_get(app_id, table, combined_result = FALSE, offset = offset, ...)))
+    offset <- get_offset(out[[length(out)]])
+  }
+  out <- bind_rows(out)
+  cbind(id = out$id, out$fields, createdTime = out$createdTime, 
+        stringsAsFactors = FALSE)
+}
+
+# Note that you can pass a `view` argument to air_get or fetch_all to get only
+# a view of a table (say, only validated records, or some other filtered view),
+# e.g.,
+# bats <- fetch_all(app_id, "Bat", view = "Validated Records")
+trips <- fetch_all(app_id, "Trip X Site")
+roosts <- fetch_all(app_id, "Bat Roost")
+bats <- fetch_all(app_id, "Bat")
+urine <- fetch_all(app_id, "Pooled Urine")
+
+```
+
+```{r clean-data}
+# A bit of cleanup.  janitor::clean_names is really helpful!
+bats <- bats %>% 
+  clean_names() %>% 
+  filter(!is.na(bat_id), bat_id != "test") # %>%  
+#filter(validated)
+
+trips <- trips %>% 
+  clean_names() # %>% 
+#  filter(validated)
+roosts <- roosts %>% 
+  clean_names()
+
+urine <- urine %>% 
+  clean_names()
+
+```
+
+```{r}
+# Run OlsonNames() to get a list of official time zone names
+time_zone <-  "Asia/Dhaka"
+last_dashboard_update <- paste0(as.character(Sys.time(), "%Y-%m-%d %H:%M"), " (", time_zone, ")")
+# last_new_data <- ... (combine all the relevant created_time columns, take max)
+# last_modified_data <- ... (co)
+```
+
+
+```{r calculate-numbers}
+n_bats_sampled <- nrow(bats)
+n_sampling_trips <- nrow(trips)
+n_pooled_urine_samps <- nrow(urine)
+```
+
+## Row
+
+
+### sampling trips
+
+```{r}
+valueBox(n_sampling_trips)
+```
+
+### bats sampled
+
+```{r}
+valueBox(n_bats_sampled)
+```
+
+### pooled urine samples
+
+```{r}
+valueBox(n_pooled_urine_samps)
+```
+
+### samples tested (fake data, TODO)
+
+```{r}
+gauge(100, 0, n_bats_sampled + n_pooled_urine_samps)
+```
+
+## Row
+
+### Sampling Locations
+
+```{r make-location-data}
+# Making a nice table of both trip locations and roosts
+locations <- bind_rows(
+  roosts %>% 
+    unnest(trip_x_site_id) %>% 
+    left_join(select(trips, id, trip_x_site_id), by = c("trip_x_site_id" = "id")) %>% 
+    mutate(type = "roost", trip = trip_x_site_id.y) %>% 
+    mutate(label = glue("Roost {bat_roost_unique_id}, counted in trip {trip}, count estimate {bat_roost_count}")) %>% 
+    select(type, name = bat_roost_unique_id, latitude, longitude, label, trip),
+  trips %>% 
+    mutate(type = "trip",
+           trip_type =  map_chr(trip_type, ~glue_collapse(., sep =", ")),
+           label = glue("Trip {trip_x_site_id}, {trip_type}, {start_date} to {end_date}")) %>% 
+    select(type, name = trip_x_site_id, latitude, longitude, label)
+)
+```
+
+```{r leaflet-map}
+leaflet(data = locations) %>% 
+  addTiles() %>% 
+  addCircleMarkers(lng = ~longitude, lat = ~latitude, popup = ~label, 
+                   color = ~colorFactor(c("purple", "green"), domain = NULL)(type)) %>% 
+  addLegend(color = c("purple", "green"), labels = c("Roosts", "Sampling Events"))
+```
+
+### Samples Collected by Date and Type
+
+```{r make-timeline}
+# Make a data frame of samples, including date and type
+collected <- bind_rows(
+  select(bats, id = bat_id, date_sampled) %>% 
+    mutate(type = "Bats"),
+  select(urine, id = pooled_urine_id, date_sampled) %>% 
+    mutate(type = "Pooled Urine")
+) %>% 
+  mutate(date_sampled = as.Date(date_sampled))
+
+# Use ggplot with the 'ggiraph' package to allow for 
+# interactive plots (e.g.) tooltips
+timeline_plot <- ggplot(collected, 
+                        aes(x = date_sampled, 
+                            y = ..count.., 
+                            tooltip = paste(..count.., "samples"), #Add a tooltip 
+                            fill = type)) +
+  geom_bar_interactive() + # Add an interactive layer
+  scale_fill_viridis_d(name = "Sample Type") + # Colorblind-friendly colors
+  labs(
+    x = "Date Sampled",
+    y = "Number of Samples"
+  ) +
+  theme(  # Some styling
+    text = element_text(family = "Avenir",colour = "#5EB9D6"),
+    axis.text = element_text(family = "Avenir",colour = "#5EB9D6"),
+    legend.position = c(.75, .75),
+    plot.background = element_blank(), panel.background = element_blank())
+
+girafe(ggobj = timeline_plot, bg = "transparent") # Output as interactive
+```
+
+## Row {data-height=30}
+
+
+### last dashboard update
+
+```{r}
+valueBox(value = "", caption = glue("Last dashboard update: {last_dashboard_update}"))
+```
+
+### last data update
+
+```{r}
+valueBox(value = "", caption = glue("TODO - most recent data."), color = "orange")
+```
+
