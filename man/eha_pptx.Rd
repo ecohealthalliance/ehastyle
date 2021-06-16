@@ -53,5 +53,6 @@ slides. Default is NULL}
 \item{pandoc_args}{Arguments to pass to pandoc. See \code{\link[MASS]{stats}}}
 }
 \description{
-Creates a powerpoint from an R markdown template
+Styles for eha rmarkdown ppt. After install the markdown template will be
+available when you choose to create a new markdown file.
 }

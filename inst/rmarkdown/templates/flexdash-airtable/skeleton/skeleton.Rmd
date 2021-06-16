@@ -39,6 +39,9 @@ library(leaflet)        # For making maps
 library(glue)           # Helpful for making labels
 library(ggiraph)        # For interactive ggplots
 library(opencage)       # For geocoding -*must add api key to env vars
+library(purrr)
+library(stringr)
+
 # Don't display the code in the dashboard
 knitr::opts_chunk$set(echo = FALSE)
 ```
@@ -188,30 +191,33 @@ leaflet(data = speakerLocations) %>%
   addLegend("bottomright", pal = pal, values = ~totalTalks)
 ```
 
-### Samples Collected by Date and Type
+### Talks through time 
+
 
 ```{r make-timeline}
-# Make a data frame of samples, including date and type
-collected <- bind_rows(
-  select(bats, id = bat_id, date_sampled) %>% 
-    mutate(type = "Bats"),
-  select(urine, id = pooled_urine_id, date_sampled) %>% 
-    mutate(type = "Pooled Urine")
-) %>% 
-  mutate(date_sampled = as.Date(date_sampled))
+
+simpTypes <- talks$type %>% 
+  map_chr(function(x){
+    if(is.null(x[[1]])){
+      "_empty_"
+    } else {
+      x[[1]]
+    }
+  }) 
+
+talks$simpTypes <- simpTypes
 
 # Use ggplot with the 'ggiraph' package to allow for 
 # interactive plots (e.g.) tooltips
-timeline_plot <- ggplot(collected, 
-                        aes(x = date_sampled, 
-                            y = ..count.., 
-                            tooltip = paste(..count.., "samples"), #Add a tooltip 
-                            fill = type)) +
-  geom_bar_interactive() + # Add an interactive layer
+timeline_plot <- ggplot(talks, 
+                        aes(x = date_time, 
+                            y = simpTypes, 
+                            tooltip = glue("Title:{name}\n{stringr::str_trunc(abstract,300)}"))) +
+  geom_point_interactive() + # Add an interactive layer
   scale_fill_viridis_d(name = "Sample Type") + # Colorblind-friendly colors
   labs(
-    x = "Date Sampled",
-    y = "Number of Samples"
+    x = "Date",
+    y = "Type of Talk"
   ) +
   theme(  # Some styling
     text = element_text(family = "Avenir",colour = "#5EB9D6"),
@@ -228,6 +234,8 @@ girafe(ggobj = timeline_plot, bg = "transparent") # Output as interactive
 ### last dashboard update
 
 ```{r}
+last_dashboard_update <- Sys.Date()
+
 valueBox(value = "", caption = glue("Last dashboard update: {last_dashboard_update}"))
 ```
 
