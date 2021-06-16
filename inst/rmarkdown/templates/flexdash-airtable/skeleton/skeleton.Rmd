@@ -29,8 +29,6 @@ on this can be found at https://rmarkdown.rstudio.com/flexdashboard/
 # running remotes::install_github('bergant/airtabler')
 library(airtabler) 
 
-
-
 # Other packages
 library(ggplot2)        # plotting tools
 library(dplyr)          # data manipulation tools
@@ -40,19 +38,21 @@ library(flexdashboard)  # For laying out the repot
 library(leaflet)        # For making maps
 library(glue)           # Helpful for making labels
 library(ggiraph)        # For interactive ggplots
+library(opencage)       # For geocoding -*must add api key to env vars
 # Don't display the code in the dashboard
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-```{r fetch-data}
-app_id <- "appx934RcLSJLZCXh"  # The ID for the base we're fetching
+
+
+```{r fetch-all}
 
 # In general `airtabler` functions get 100 records at a time, this function
 # simplifies this.  We will incorporate this into our custom R package in the
-# future
+# future.
 fetch_all <- function(app_id, table, ...) {
   out <- list()
-  out[[1]] <- air_get(app_id, table, combined_result = FALSE)
+  out[[1]] <- air_get(app_id, table, combined_result = FALSE,...)
   offset <- get_offset(out[[1]])
   while (!is.null(offset)) {
     out <- c(out, list(air_get(app_id, table, combined_result = FALSE, offset = offset, ...)))
@@ -62,105 +62,130 @@ fetch_all <- function(app_id, table, ...) {
   cbind(id = out$id, out$fields, createdTime = out$createdTime, 
         stringsAsFactors = FALSE)
 }
+```
+
+
+```{r fetch-data}
+
+# Each base a fully described API 
+
+app_id <- "appwlxIzmQx5njRtQ" # ID for the base we are fetching. 
 
 # Note that you can pass a `view` argument to air_get or fetch_all to get only
 # a view of a table (say, only validated records, or some other filtered view),
 # e.g.,
 # bats <- fetch_all(app_id, "Bat", view = "Validated Records")
-trips <- fetch_all(app_id, "Trip X Site")
-roosts <- fetch_all(app_id, "Bat Roost")
-bats <- fetch_all(app_id, "Bat")
-urine <- fetch_all(app_id, "Pooled Urine")
+talks <- fetch_all(app_id, "TALKS")
+speakers <- fetch_all(app_id, "SPEAKERS")
+upComingTalks <- fetch_all(app_id = app_id , table = "TALKS", view = "Upcoming EHA Talks")
+
 
 ```
 
 ```{r clean-data}
 # A bit of cleanup.  janitor::clean_names is really helpful!
-bats <- bats %>% 
+talks <- talks %>% 
   clean_names() %>% 
-  filter(!is.na(bat_id), bat_id != "test") # %>%  
-#filter(validated)
+  mutate(date_time = as.Date(date_time)) %>% 
+  mutate(created_time = as.Date(created_time))
 
-trips <- trips %>% 
-  clean_names() # %>% 
-#  filter(validated)
-roosts <- roosts %>% 
+upComingTalks <- upComingTalks %>% 
+    clean_names() %>% 
+    mutate(date_time = as.Date(date_time)) %>% 
+    mutate(created_time = as.Date(created_time))
+
+speakers <- speakers %>% 
   clean_names()
-
-urine <- urine %>% 
-  clean_names()
-
-```
-
-```{r}
-# Run OlsonNames() to get a list of official time zone names
-time_zone <-  "Asia/Dhaka"
-last_dashboard_update <- paste0(as.character(Sys.time(), "%Y-%m-%d %H:%M"), " (", time_zone, ")")
-# last_new_data <- ... (combine all the relevant created_time columns, take max)
-# last_modified_data <- ... (co)
 ```
 
 
 ```{r calculate-numbers}
-n_bats_sampled <- nrow(bats)
-n_sampling_trips <- nrow(trips)
-n_pooled_urine_samps <- nrow(urine)
+n_talks <- nrow(talks)
+n_speakers <- nrow(speakers)
+n_scheduled <- nrow(upComingTalks)
 ```
 
 ## Row
 
 
-### sampling trips
+### number of talks
 
 ```{r}
-valueBox(n_sampling_trips)
+valueBox(n_talks)
 ```
 
-### bats sampled
+### number of speakers
 
 ```{r}
-valueBox(n_bats_sampled)
+valueBox(n_speakers)
 ```
 
-### pooled urine samples
+### upcoming talks
 
 ```{r}
-valueBox(n_pooled_urine_samps)
+valueBox(n_scheduled)
 ```
 
-### samples tested (fake data, TODO)
+### upcoming talks target
 
 ```{r}
-gauge(100, 0, n_bats_sampled + n_pooled_urine_samps)
+gauge(n_scheduled, 0, 5)
 ```
 
 ## Row
 
-### Sampling Locations
+### Speaker Insitutation Locations
 
 ```{r make-location-data}
-# Making a nice table of both trip locations and roosts
-locations <- bind_rows(
-  roosts %>% 
-    unnest(trip_x_site_id) %>% 
-    left_join(select(trips, id, trip_x_site_id), by = c("trip_x_site_id" = "id")) %>% 
-    mutate(type = "roost", trip = trip_x_site_id.y) %>% 
-    mutate(label = glue("Roost {bat_roost_unique_id}, counted in trip {trip}, count estimate {bat_roost_count}")) %>% 
-    select(type, name = bat_roost_unique_id, latitude, longitude, label, trip),
-  trips %>% 
-    mutate(type = "trip",
-           trip_type =  map_chr(trip_type, ~glue_collapse(., sep =", ")),
-           label = glue("Trip {trip_x_site_id}, {trip_type}, {start_date} to {end_date}")) %>% 
-    select(type, name = trip_x_site_id, latitude, longitude, label)
-)
+# Making a nice, synthetic table of speaker affiliations locations
+
+institutions <- speakers %>% 
+  distinct_at("affiliation") %>% 
+  filter(!is.na(affiliation))
+
+cities <- c("Manhattan, New York",
+            "Marseille, France",
+            "Dhaka, Bangladesh",
+            "Missoula, Montana",
+            "Bronx, New York",
+            "Pretoria, South Africa",
+            "Rochester, New York",
+            "London, England")
+
+geoCodedCities <- oc_forward(cities,limit = 1)
+
+
+cityLatLng <- purrr::map_dfr(geoCodedCities,.f = function(x){
+    lat <- purrr::pluck(x,"oc_lat")
+    lng <- purrr::pluck(x, "oc_lng")
+    return(tibble(lat,lng))
+  }
+  )
+
+locDf <- tibble(institutions, cities)
+
+locations <- cbind(locDf,cityLatLng)
+
+talksPer <- speakers %>% 
+  group_by(affiliation) %>% 
+  summarise(totalTalks = sum(length(talks_given)))
+
+speakerLocations <- left_join(locations,talksPer,"affiliation") %>% 
+  mutate(label = glue("{affiliation} has provided {totalTalks} speakers to EHA meetings"))
+
+
 ```
 
 ```{r leaflet-map}
-leaflet(data = locations) %>% 
+
+pal <- colorNumeric("RdYlBu", domain = speakerLocations$totalTalks)
+
+leaflet(data = speakerLocations) %>% 
   addTiles() %>% 
-  addCircleMarkers(lng = ~longitude, lat = ~latitude, popup = ~label, 
-                   color = ~colorFactor(c("purple", "green"), domain = NULL)(type)) %>% 
-  addLegend(color = c("purple", "green"), labels = c("Roosts", "Sampling Events"))
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(lng = ~lng, lat = ~lat, popup = ~label, 
+                   color = ~pal(totalTalks)) %>% 
+  addLegend("bottomright", pal = pal, values = ~totalTalks)
 ```
 
 ### Samples Collected by Date and Type
