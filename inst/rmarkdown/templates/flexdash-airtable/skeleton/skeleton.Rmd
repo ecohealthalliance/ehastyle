@@ -2,8 +2,13 @@
 title: "Template Title"
 output: 
   ehastyle::eha_flex_dashboard:
-    orientation: rows
-    fontUrl: "https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2"
+    theme:
+      version: 4
+      bg: "#224A55"
+      fg: "#5EB9D6" 
+      primary: "#97C83E"
+      navbar-bg: "#3ADAC5"
+      base_font: !expr bslib::font_face("Avenir", style = "normal", weight = "500",  src = "url(https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2) format('woff2')")
 ---
 
 <!--

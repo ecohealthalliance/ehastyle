@@ -5,13 +5,13 @@
 \title{EcoHealth Alliance Flex Dashboard Theme}
 \usage{
 eha_flex_dashboard(
-  orientation = "row",
+  orientation = "rows",
   bg = "#224A55",
   fg = "#5EB9D6",
   primary = "#97C83E",
   secondary = "#B0A28A",
   version = 4,
-  fontUrl,
+  fontUrl = NULL,
   ...
 )
 }
