@@ -28,7 +28,7 @@ eha_flex_dashboard <- function(orientation = "row",bg = "#224A55",fg = "#5EB9D6"
     system.file(..., package = "ehastyle")
   }
 
-  logoEHA <- pkg_resource("inst/rmarkdown/templates/flexdash-airtable/skeleton/eha_logo.png")
+  logoEHA <- pkg_resource("eha_icon_logo.png")
 
   ### create theme  components ----
   srcFont <- sprintf("url(%s)format(\"woff2\")",fontUrl)
