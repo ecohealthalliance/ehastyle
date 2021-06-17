@@ -8,8 +8,10 @@
 #' @param fg Foreground color for \code{bs_theme}
 #' @param primary Primary color for \code{bs_theme}
 #' @param secondary Secondary color for code \code{bs_theme}
+#' @param version Bootstrap version to use with \cod{bs_theme}
 #' @param fontUrl URL where font is hosted
-#' @param ... additional arguments to be passed to \code{flex_dashboard}
+#' @param ... Additional arguments to be passed to \code{flex_dashboard}
+#'
 #'
 #' @seealso \code{\link[flexdashboard:flex_dashboard]{flexdashboard::flex_dashboard()}}
 #' \code{\link[bslib:bs_theme]{bslib::bs_theme()}}
@@ -19,7 +21,7 @@
 #'
 #' @examples
 eha_flex_dashboard <- function(orientation = "row",bg = "#224A55",fg = "#5EB9D6",
-                               primary = "#97C83E",secondary = "#B0A28A",
+                               primary = "#97C83E",secondary = "#B0A28A", version = 4,
                                fontUrl,...){
 
 
@@ -31,12 +33,21 @@ eha_flex_dashboard <- function(orientation = "row",bg = "#224A55",fg = "#5EB9D6"
   logoEHA <- pkg_resource("eha_icon_logo.png")
 
   ### create theme  components ----
-  srcFont <- sprintf("url(%s)format(\"woff2\")",fontUrl)
 
-  base_font <- bslib::font_face("Avenir", style = "normal", weight = "500",  src = srcFont)
+  if(is.null(fontUrl)){
 
-  ehaDashTheme <- bslib::bs_theme(bg = bg,fg = fg,primary = primary, secondary = secondary,
-                                  base_font = base_font)
+    ehaDashTheme <- bslib::bs_theme(bg = bg,
+                                    fg = fg,
+                                    primary = primary,
+                                    secondary = secondary,
+                                    version = version)
+  } else {
+    srcFont <- sprintf("url(%s)format('woff2')",fontUrl)
+
+    base_font <- bslib::font_face("Avenir", style = "normal", weight = "500",  src = srcFont)
+  }
+
+
 
   ### build flexdash function ----
 

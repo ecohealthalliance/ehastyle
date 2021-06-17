@@ -20,7 +20,7 @@
 #' Default is NULL
 #' @param slide_level Numeric. Defines the heading level that defines individual
 #'  slides. Default is NULL
-#' @param pandoc_args Arguments to pass to pandoc. See \code{\link[MASS]{stats}}
+#' @param pandoc_args Arguments to pass to pandoc.
 #'
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @importFrom officer read_pptx on_slide ph_with external_img

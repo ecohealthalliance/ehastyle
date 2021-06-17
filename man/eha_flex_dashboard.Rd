@@ -10,6 +10,7 @@ eha_flex_dashboard(
   fg = "#5EB9D6",
   primary = "#97C83E",
   secondary = "#B0A28A",
+  version = 4,
   fontUrl,
   ...
 )
@@ -25,9 +26,11 @@ eha_flex_dashboard(
 
 \item{secondary}{Secondary color for code \code{bs_theme}}
 
+\item{version}{Bootstrap version to use with \cod{bs_theme}}
+
 \item{fontUrl}{URL where font is hosted}
 
-\item{...}{additional arguments to be passed to \code{flex_dashboard}}
+\item{...}{Additional arguments to be passed to \code{flex_dashboard}}
 }
 \value{
 function

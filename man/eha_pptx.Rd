@@ -50,7 +50,7 @@ Default is NULL}
 \item{slide_level}{Numeric. Defines the heading level that defines individual
 slides. Default is NULL}
 
-\item{pandoc_args}{Arguments to pass to pandoc. See \code{\link[MASS]{stats}}}
+\item{pandoc_args}{Arguments to pass to pandoc.}
 }
 \description{
 Styles for eha rmarkdown ppt. After install the markdown template will be
