@@ -44,7 +44,18 @@ eha_flex_dashboard <- function(orientation = "row",bg = "#224A55",fg = "#5EB9D6"
   } else {
     srcFont <- sprintf("url(%s)format('woff2')",fontUrl)
 
-    base_font <- bslib::font_face("Avenir", style = "normal", weight = "500",  src = srcFont)
+    base_font <- bslib::font_face(family = "Avenir",
+                                  style = "normal",
+                                  weight = "500",
+                                  src = srcFont)
+
+
+    ehaDashTheme <- bslib::bs_theme(bg = bg,
+                                    fg = fg,
+                                    primary = primary,
+                                    secondary = secondary,
+                                    base_font = base_font,
+                                    version = version)
   }
 
 

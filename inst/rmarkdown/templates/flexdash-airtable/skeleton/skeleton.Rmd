@@ -3,7 +3,7 @@ title: "Template Title"
 output: 
   ehastyle::eha_flex_dashboard:
     orientation: rows
-    fontUrl: "https://webfonts.brand.ucsb.edu/Avenir/AvenirLTW04-85Heavy.woff2"
+    fontUrl: "https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2"
 ---
 
 <!--
