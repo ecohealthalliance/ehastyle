@@ -1,16 +1,9 @@
 ---
 title: "Template Title"
 output: 
-  flexdashboard::flex_dashboard:
+  ehastyle::eha_flex_dashboard:
     orientation: rows
-    logo: eha_logo.png
-    favicon: eha_logo.png
-    theme:
-      base_font: !expr bslib::font_face("Avenir", style = "normal", weight = "500",  src = "url(https://webfonts.brand.ucsb.edu/Avenir/AvenirLTW04-85Heavy.woff2) format(\"woff2\")")
-      bg: "#224A55"
-      fg: "#5EB9D6"
-      primary: "#97C83E"
-      secondary: "#B0A28A"
+    fontUrl: "https://webfonts.brand.ucsb.edu/Avenir/AvenirLTW04-85Heavy.woff2"
 ---
 
 <!--
