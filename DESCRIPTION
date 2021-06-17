@@ -16,6 +16,7 @@ Imports:
     officer,
     magrittr,
     linl,
-    ggplot2
+    ggplot2,
+    xaringan
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
