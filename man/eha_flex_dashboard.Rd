@@ -26,7 +26,7 @@ eha_flex_dashboard(
 
 \item{secondary}{Secondary color for code \code{bs_theme}}
 
-\item{version}{Bootstrap version to use with \cod{bs_theme}}
+\item{version}{Bootstrap version to use with \code{bs_theme}}
 
 \item{fontUrl}{URL where font is hosted}
 

@@ -20,3 +20,5 @@ Imports:
     xaringan
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 2.10)

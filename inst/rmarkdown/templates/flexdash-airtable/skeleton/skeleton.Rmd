@@ -36,9 +36,8 @@ library(flexdashboard)  # For laying out the repot
 library(leaflet)        # For making maps
 library(glue)           # Helpful for making labels
 library(ggiraph)        # For interactive ggplots
-library(opencage)       # For geocoding -*must add api key to env vars
-library(purrr)
-library(stringr)
+library(purrr)          # For manipulating nested data structures
+library(stringr)        # For manipulating strings
 
 # Don't display the code in the dashboard
 knitr::opts_chunk$set(echo = FALSE)
@@ -140,40 +139,7 @@ gauge(n_scheduled, 0, 5)
 ```{r make-location-data}
 # Making a nice, synthetic table of speaker affiliations locations
 
-institutions <- speakers %>% 
-  distinct_at("affiliation") %>% 
-  filter(!is.na(affiliation))
-
-cities <- c("Manhattan, New York",
-            "Marseille, France",
-            "Dhaka, Bangladesh",
-            "Missoula, Montana",
-            "Bronx, New York",
-            "Pretoria, South Africa",
-            "Rochester, New York",
-            "London, England")
-
-geoCodedCities <- oc_forward(cities,limit = 1)
-
-
-cityLatLng <- purrr::map_dfr(geoCodedCities,.f = function(x){
-    lat <- purrr::pluck(x,"oc_lat")
-    lng <- purrr::pluck(x, "oc_lng")
-    return(tibble(lat,lng))
-  }
-  )
-
-locDf <- tibble(institutions, cities)
-
-locations <- cbind(locDf,cityLatLng)
-
-talksPer <- speakers %>% 
-  group_by(affiliation) %>% 
-  summarise(totalTalks = sum(length(talks_given)))
-
-speakerLocations <- left_join(locations,talksPer,"affiliation") %>% 
-  mutate(label = glue("{affiliation} has provided {totalTalks} speakers to EHA meetings"))
-
+speakerLocations <- ehastyle::speakerLocations
 
 ```
 

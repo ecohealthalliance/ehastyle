@@ -8,7 +8,7 @@
 #' @param fg Foreground color for \code{bs_theme}
 #' @param primary Primary color for \code{bs_theme}
 #' @param secondary Secondary color for code \code{bs_theme}
-#' @param version Bootstrap version to use with \cod{bs_theme}
+#' @param version Bootstrap version to use with \code{bs_theme}
 #' @param fontUrl URL where font is hosted
 #' @param ... Additional arguments to be passed to \code{flex_dashboard}
 #'
