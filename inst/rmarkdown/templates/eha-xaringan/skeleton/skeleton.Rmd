@@ -2,17 +2,52 @@
 title: "EHA Presentation HTML"
 subtitle: "a very interesting talk"
 author: "Your Name"
-output: output_format
+output: 
+    ehastyle::eha_xaringan
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Adding an RMarkdown Template
+# Outline
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+* Background on XLSForm
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+* Guiding principle in form authoring
 
-Finally, be sure to remove this message!
+* XLSForm topics
+
+    - Style recommendations
+
+    - Optimising GPS in forms
+
+    - Getting to know `select_multiple`
+    
+---
+
+# Background
+
+* form standard used to author Open Data Kit (ODK) forms
+
+* uses a spreadsheet (Microsoft Excel, Google Sheets, or OpenDocument)
+
+* simple to get started; sophisticated enough to allow complex authoring of forms
+
+---
+
+class: center, middle
+
+# Guiding principle
+
+## Author forms with data analysis in mind
+
+---
+
+class: center, middle
+
+# XLSForm topics
+
+[Link to XLSForm for this talk](https://docs.google.com/spreadsheets/d/1-u3ogfGSWbcb1m9yduWyXgXx9WTCAl56Mk8vMl9w_GY/edit?usp=sharing)
+
+---
