@@ -77,3 +77,22 @@ ggplot2::diamonds %>%
     coord_flip()
 
 ```
+---
+
+# Two coloumn slide
+.left-column[
+- Any content
+- You like
+- On the left
+]
+
+.right-column[
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+```
+]
+
