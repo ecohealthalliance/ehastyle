@@ -27,9 +27,9 @@ eha_xaringan <- function(...){
     title_slide_text_color = "#000000",
     background_image = ehaBackgroundPng,
     header_font_family ="Avenir",
-    header_font_url = avenirCss,
+    header_font_url = "https://font-avenir.s3.us-east-2.amazonaws.com/Avenir.css",
     text_font_family = "Avenir",
-    text_font_url = avenirCss,
+    text_font_url = "https://font-avenir.s3.us-east-2.amazonaws.com/Avenir.css",
     code_font_google = xaringanthemer::google_font("Fira Mono"),
     code_font_size = "0.7rem",
     text_slide_number_font_size = "1em",
@@ -46,6 +46,6 @@ eha_xaringan <- function(...){
                      titleSlideClass = c("right", "bottom"))
 
   ### combine theme and config  ----
-  xaringan::moon_reader(css = "eha-xaringan-themer.css", lib_dir = "libs",nature = natureList )
+  xaringan::moon_reader( css = "eha-xaringan-themer.css", lib_dir = "libs",nature = natureList )
 
 }
