@@ -49,5 +49,3 @@ class: center, middle
 # XLSForm topics
 
 [Link to XLSForm for this talk](https://docs.google.com/spreadsheets/d/1-u3ogfGSWbcb1m9yduWyXgXx9WTCAl56Mk8vMl9w_GY/edit?usp=sharing)
-
----

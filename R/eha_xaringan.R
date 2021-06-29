@@ -33,7 +33,7 @@ eha_xaringan <- function(...){
     code_font_google = xaringanthemer::google_font("Fira Mono"),
     code_font_size = "0.7rem",
     text_slide_number_font_size = "1em",
-    link_color = "#509935",
+    link_color = "#8ec549",
     outfile = "eha-xaringan-themer.css"
   )
 
