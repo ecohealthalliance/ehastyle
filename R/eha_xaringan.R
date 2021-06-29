@@ -15,9 +15,9 @@ eha_xaringan <- function(...){
   ## get resources from package ----
   ehaTitlePng <- pkg_resource("ecohealth_title_background_4by3.png")
   ehaBackgroundPng <- pkg_resource("ecohealth_slide_background_4by3.png")
-  avenirCss <- pkg_resource("avenir.css")
+  # avenirCss <- pkg_resource("avenir.css")
 
-  xaringanthemer::style_mono_light(
+  xaringanthemer::style_mono_light(text_font_base = "Courier",
     base_color = "#000000",
     base_font_size = "22px",
     title_slide_background_color = "#FFFFFF",
