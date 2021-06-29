@@ -43,7 +43,7 @@ eha_xaringan <- function(...){
   natureList <- list(highlightStyle = "github",
                      highlightLines = "true",
                      countIncrementalSlides = "false",
-                     titleSlideClass = '["right", "bottom"]')
+                     titleSlideClass = c("right", "bottom"))
 
   ### combine theme and config  ----
   xaringan::moon_reader(css = "eha-xaringan-themer.css", lib_dir = "libs",nature = natureList )
