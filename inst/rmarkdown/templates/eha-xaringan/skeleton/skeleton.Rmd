@@ -7,45 +7,73 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.height=5, fig.align='center')
 ```
 
-# Outline
+# A slide title
 
-* Background on XLSForm
+* These list items are 
 
-* Guiding principle in form authoring
+* Place holders for your 
 
-* XLSForm topics
+* Content
 
-    - Style recommendations
+    - sub list item 1
 
-    - Optimising GPS in forms
+    - sub list item 2
 
-    - Getting to know `select_multiple`
+    - sub list item 3
     
 ---
 
 # Background
 
-* form standard used to author Open Data Kit (ODK) forms
+* The `xaringan` package lets you make html presentations
 
-* uses a spreadsheet (Microsoft Excel, Google Sheets, or OpenDocument)
+* The `ehastyle` package creates consistent formatting for your presentation
 
-* simple to get started; sophisticated enough to allow complex authoring of forms
-
----
-
-class: center, middle
-
-# Guiding principle
-
-## Author forms with data analysis in mind
+* These can be used to create slide shows that dynamically update with your analysis
 
 ---
 
 class: center, middle
 
-# XLSForm topics
+# Build dynamic presentations
 
-[Link to XLSForm for this talk](https://docs.google.com/spreadsheets/d/1-u3ogfGSWbcb1m9yduWyXgXx9WTCAl56Mk8vMl9w_GY/edit?usp=sharing)
+## Author presentations that directly include code
+
+### Use markdown to do it
+
+---
+
+# Here is some code
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+
+```
+
+---
+
+# Here is the plot
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.alt="an example plot from the diamonds dataset showing cut on the y axis and carat on the x axis"}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+
+```
