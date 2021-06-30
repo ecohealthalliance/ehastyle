@@ -1,0 +1,98 @@
+---
+title: "EHA Presentation HTML"
+subtitle: "a very interesting talk"
+author: "Your Name"
+output: 
+    ehastyle::eha_xaringan
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.height=5, fig.align='center')
+```
+
+# A slide title
+
+* These list items are 
+
+* Place holders for your 
+
+* Content
+
+    - sub list item 1
+
+    - sub list item 2
+
+    - sub list item 3
+    
+---
+
+# Background
+
+* The `xaringan` package lets you make html presentations
+
+* The `ehastyle` package creates consistent formatting for your presentation
+
+* These can be used to create slide shows that dynamically update with your analysis
+
+---
+
+class: center, middle
+
+# Build dynamic presentations
+
+## Author presentations that directly include code
+
+### Use markdown to do it
+
+---
+
+# Here is some code
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+
+```
+
+---
+
+# Here is the plot
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.alt="an example plot from the diamonds dataset showing cut on the y axis and carat on the x axis"}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+
+```
+---
+
+# Two coloumn slide
+.left-column[
+- Any content
+- You like
+- On the left
+]
+
+.right-column[
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    theme_xaringan() +
+    coord_flip()
+```
+]
+
