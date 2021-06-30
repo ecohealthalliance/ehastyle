@@ -5,8 +5,9 @@ Version: 0.1.0
 Authors@R: c(
     person("Noam", "Ross", , "ross@ecohealthalliance.org", role = c("aut", "cre")),
     person("Emma", "Mendelsohn", , "mendelsohn@ecohealthalliance.org", role = c("aut")),
+    person("Collin", "Schwantes", , "schwantes@ecohealthalliance.org", role = c("aut")),
     person("EcoHealth Alliance", role="cph"))
-Maintainer: Noam Ross <ross@ecohealthalliance.org>
+Maintainer: Collin Schwantes <schwantes@ecohealthalliance.org>
 Description: Contains R Markdown templates and ggplot2 themes suitable for EHA work
 License: MIT
 LazyData: TRUE
