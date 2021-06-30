@@ -18,7 +18,8 @@ Imports:
     linl,
     ggplot2,
     xaringan,
-    xaringanthemer
+    xaringanthemer,
+    bslib
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Depends: 
