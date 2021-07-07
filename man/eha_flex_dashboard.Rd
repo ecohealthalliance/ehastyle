@@ -11,10 +11,10 @@ eha_flex_dashboard(
   primary = "#97C83E",
   secondary = "#B0A28A",
   version = 4,
-  fontUrl = NULL,
-  family,
-  style,
-  weight,
+  fontUrl = "https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2",
+  family = "Avenir",
+  style = "normal",
+  weight = "500",
   ...
 )
 }

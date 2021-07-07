@@ -32,7 +32,8 @@
 #' @examples
 eha_flex_dashboard <- function(orientation = "rows",bg = "#224A55",fg = "#5EB9D6",
                                primary = "#97C83E",secondary = "#B0A28A", version = 4,
-                               fontUrl=NULL,family,style,weight,...){
+                               fontUrl="https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2",family = "Avenir", style = "normal",
+                               weight = "500",...){
 
 
   ### get logo resources ----
@@ -44,29 +45,31 @@ eha_flex_dashboard <- function(orientation = "rows",bg = "#224A55",fg = "#5EB9D6
 
   ### create theme  components ----
 
-  # if(is.null(fontUrl)){
-  #
-  #   ehaDashTheme <- bslib::bs_theme(bg = bg,
-  #                                   fg = fg,
-  #                                   primary = primary,
-  #                                   secondary = secondary,
-  #                                   version = version)
-  # } else {
-  #   srcFont <- sprintf("url(%s)format('woff2')",fontUrl)
-  #
-  #   base_font <- bslib::font_face(family = "Avenir",
-  #                                 style = "normal",
-  #                                 weight = "500",
-  #                                 src = srcFont)
-  #
-  #
-  #   ehaDashTheme <- bslib::bs_theme(bg = bg,
-  #                                   fg = fg,
-  #                                   primary = primary,
-  #                                   secondary = secondary,
-  #                                   base_font = base_font,
-  #                                   version = version)
-  # }
+  if(is.null(fontUrl)){
+    message("using no font selection")
+
+    ehaDashTheme <- list(bg = bg,
+                                    fg = fg,
+                                    primary = primary,
+                                    secondary = secondary,
+                                    version = version)
+  } else {
+
+    srcFont <- sprintf("url(%s)format('woff2')",fontUrl)
+
+    base_font <- bslib::font_face(family = family,
+                                  style = style,
+                                  weight = weight,
+                                  src = srcFont)
+
+
+    ehaDashTheme <- list(bg = bg,
+                                    fg = fg,
+                                    primary = primary,
+                                    secondary = secondary,
+                                    base_font = base_font,
+                                    version = version)
+  }
 
 
 
@@ -75,7 +78,7 @@ eha_flex_dashboard <- function(orientation = "rows",bg = "#224A55",fg = "#5EB9D6
   flexdashboard::flex_dashboard(orientation = orientation,
                                 logo = logoEHA,
                                 favicon = logoEHA,
-                                # theme = ehaDashTheme,
+                                theme = ehaDashTheme,
                                 ...)
 
 }
