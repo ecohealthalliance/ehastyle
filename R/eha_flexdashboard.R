@@ -2,6 +2,10 @@
 #'
 #' Function to create a custom flexdashboard theme for EHA.
 #'
+#' @section CSS Font Properties:
+#' See W3 description of \href{https://www.w3schools.com/cssref/pr_font_font.asp}{font property}
+#' for additional details about customizing fonts.
+#'
 #'
 #' @param orientation Determines whether level 2 headings are treated as dashboard rows or dashboard columns.
 #' @param bg Background color for \code{bs_theme}
@@ -10,10 +14,16 @@
 #' @param secondary Secondary color for code \code{bs_theme}
 #' @param version Bootstrap version to use with \code{bs_theme}
 #' @param fontUrl URL where font is hosted
+#' @param family String. Name of font family when using fontURL
+#' @param style  String. Name of font style. Choose from normal, italic,oblique,
+#' initial, or inherit
+#' @param weight String. Defines from thin to thick characters.
+#' 400 is the same as normal, and 700 is the same as bold. Can also use
+#' normal, bold, bolder, or lighter
 #' @param ... Additional arguments to be passed to \code{flex_dashboard}
 #'
-#'
-#' @seealso \code{\link[flexdashboard:flex_dashboard]{flexdashboard::flex_dashboard()}}
+#' @seealso
+#' \code{\link[flexdashboard:flex_dashboard]{flexdashboard::flex_dashboard()}}
 #' \code{\link[bslib:bs_theme]{bslib::bs_theme()}}
 #'
 #' @return function
@@ -22,7 +32,7 @@
 #' @examples
 eha_flex_dashboard <- function(orientation = "rows",bg = "#224A55",fg = "#5EB9D6",
                                primary = "#97C83E",secondary = "#B0A28A", version = 4,
-                               fontUrl=NULL,...){
+                               fontUrl=NULL,family,style,weight,...){
 
 
   ### get logo resources ----
