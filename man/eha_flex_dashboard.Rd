@@ -11,7 +11,10 @@ eha_flex_dashboard(
   primary = "#97C83E",
   secondary = "#B0A28A",
   version = 4,
-  fontUrl = NULL,
+  fontUrl = "https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2",
+  family = "Avenir",
+  style = "normal",
+  weight = "500",
   ...
 )
 }
@@ -30,6 +33,15 @@ eha_flex_dashboard(
 
 \item{fontUrl}{URL where font is hosted}
 
+\item{family}{String. Name of font family when using fontURL}
+
+\item{style}{String. Name of font style. Choose from normal, italic,oblique,
+initial, or inherit}
+
+\item{weight}{String. Defines from thin to thick characters.
+400 is the same as normal, and 700 is the same as bold. Can also use
+normal, bold, bolder, or lighter}
+
 \item{...}{Additional arguments to be passed to \code{flex_dashboard}}
 }
 \value{
@@ -38,6 +50,12 @@ function
 \description{
 Function to create a custom flexdashboard theme for EHA.
 }
+\section{CSS Font Properties}{
+
+See W3 description of \href{https://www.w3schools.com/cssref/pr_font_font.asp}{font property}
+for additional details about customizing fonts.
+}
+
 \seealso{
 \code{\link[flexdashboard:flex_dashboard]{flexdashboard::flex_dashboard()}}
 \code{\link[bslib:bs_theme]{bslib::bs_theme()}}
