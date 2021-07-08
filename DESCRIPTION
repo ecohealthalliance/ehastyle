@@ -20,7 +20,8 @@ Imports:
     ggplot2,
     xaringan,
     xaringanthemer,
-    bslib
+    bslib,
+    officedown
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Depends: 
