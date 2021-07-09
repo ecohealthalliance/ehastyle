@@ -3,8 +3,7 @@ title: "EHA Presentation HTML"
 subtitle: "a very interesting talk"
 author: "Your Name"
 output: 
-    ehastyle::eha_classic_xar:
-      aspect: "4x3"
+    ehastyle::eha_classic_xar
 ---
 
 ```{r setup, include=FALSE}
