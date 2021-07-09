@@ -13,7 +13,6 @@ eha_classic_pptx(
   fig_caption = TRUE,
   df_print = "default",
   keep_md = FALSE,
-  cache_prefix = "cache/",
   smart = TRUE,
   md_extensions = NULL,
   slide_level = NULL,
@@ -39,8 +38,6 @@ Default is 2.}
 \item{df_print}{String. Print data frames? Default is "default"}
 
 \item{keep_md}{Logical. Should markdown document be kept? Default is FALSE}
-
-\item{cache_prefix}{String. Directory for cache contents. Default is "cache/"}
 
 \item{smart}{Logical. Produce typographically correct outs. Default is TRUE}
 
