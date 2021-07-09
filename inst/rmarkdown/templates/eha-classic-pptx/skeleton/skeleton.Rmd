@@ -32,6 +32,11 @@ summary(cars)
 ```
 
 ## Slide with Table
+
+```{r iristable}
+head(iris)
+```
+## Slide to the Right 
 :::::: {.columns}
 ::: {.column}
 Use `layout='Two Content', ph=officer::ph_location_right()` 
@@ -40,7 +45,7 @@ to properly place content
 
 ::: {.column}
 
-```{r carstable, layout='Two Content',ph=officer::ph_location_right()}
+```{r righttable, layout='Two Content',ph=officer::ph_location_right()}
 head(cars,10)
 ```
 :::
