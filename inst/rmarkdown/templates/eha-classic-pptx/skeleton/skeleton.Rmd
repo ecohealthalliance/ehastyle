@@ -35,7 +35,7 @@ summary(cars)
 :::::: {.columns}
 ::: {.column}
 Use `layout='Two Content', ph=officer::ph_location_right()` 
-to create a two column slide"
+to properly place content 
 :::
 
 ::: {.column}
@@ -46,18 +46,33 @@ head(cars,10)
 :::
 ::::::
 
+## Slide to the left 
+:::::: {.columns}
+::: {.column}
+```{r layout='Two Content', ph=officer::ph_location_left()}
+head(cars)
+```
+:::
+
+::: {.column}
+- Left side table
+:::
+::::::
+
 ##  Slide with SVG Plot
 
 ```{r pressure}
+## use dml to make the plot an editable svg in ppt
 dml(plot(pressure))
 ```
 
 ## Slide with SVG Ggplot
 
-```{r ph=officer::ph_location_fullsize()}
+```{r }
 ggplotObj <- ggplot(mtcars, aes(wt, mpg), col = displ) +
   geom_point()
 
+## pass a ggplot object to dml 
 dml(ggobj = ggplotObj)
 ```
 
