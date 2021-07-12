@@ -56,7 +56,7 @@ eha_avenir_pptx <- function(aspect = "16x9",
   md_extensions <- unique(c("+raw_attribute", md_extensions))
 
 
-  officedown::rpptx_document(master = "EHA Avenir",
+  officedown::rpptx_document(master = "EcoHealth Alliance Avenir",
                              reference_doc = ppt_template,
                              toc = toc,
                              toc_depth = toc_depth,

@@ -38,6 +38,7 @@ summary(cars)
 head(iris)
 ```
 ## Slide to the Right 
+
 :::::: {.columns}
 ::: {.column}
 Use `layout='Two Content', ph=officer::ph_location_right()` 
@@ -53,6 +54,7 @@ head(cars,10)
 ::::::
 
 ## Slide to the left 
+
 :::::: {.columns}
 ::: {.column}
 ```{r layout='Two Content', ph=officer::ph_location_left()}
