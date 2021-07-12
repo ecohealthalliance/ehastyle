@@ -19,14 +19,16 @@
 #' Default is NULL
 #' @param slide_level Numeric. Defines the heading level that defines individual
 #'  slides. Default is NULL
-#' @param pandoc_args Arguments to pass to pandoc.
+#' @param pandoc_args Arguments to pass to pandoc
+#' @param master String. Name of slide master for template ppt
+#' Use \code{\link{ppt_layout}} to see name of master and layouts.
 #'
 #' @seealso \code{\link[rmarkdown]{powerpoint_presentation}}, \code{\link[officedown]{rpptx_document}}
 #'
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @importFrom officedown rpptx_document
 #' @export
-eha_classic_pptx <- function(aspect = "16x9",
+eha_classic_pptx <- function(aspect = "16x9", master ="EcoHealth Alliance",
                      toc = FALSE, toc_depth = 2, fig_width = 9.4,
                      fig_height = 4.24, fig_caption = TRUE, df_print = "default",
                      keep_md = FALSE,
@@ -47,6 +49,7 @@ eha_classic_pptx <- function(aspect = "16x9",
   # knitr options passed via rpptx_document
   # pandoc options passed via rpptx_document
 
+  ppt_check(ppt_template, master)
 
   if(smart){
     md_extensions <- c(md_extensions, "+smart")
@@ -55,7 +58,7 @@ eha_classic_pptx <- function(aspect = "16x9",
   md_extensions <- unique(c("+raw_attribute", md_extensions))
 
 
-  officedown::rpptx_document(master = "EcoHealth Alliance",
+  officedown::rpptx_document(master = master,
                              reference_doc = ppt_template,
                              toc = toc,
                              toc_depth = toc_depth,

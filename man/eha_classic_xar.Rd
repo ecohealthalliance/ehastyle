@@ -7,7 +7,7 @@
 eha_classic_xar(aspect = "16x9")
 }
 \arguments{
-\item{aspect}{String. Aspect ratio for power point slides.
+\item{aspect}{String. Aspect ratio for slides.
 Either "16x9" or "4x3". Default is "16x9"}
 }
 \value{

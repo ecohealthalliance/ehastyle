@@ -6,6 +6,7 @@
 \usage{
 eha_avenir_pptx(
   aspect = "16x9",
+  master = "EcoHealth Alliance Avenir",
   toc = FALSE,
   toc_depth = 2,
   fig_width = 9.4,
@@ -22,6 +23,9 @@ eha_avenir_pptx(
 \arguments{
 \item{aspect}{String. Aspect ratio for power point slides.
 Either "16x9" or "4x3". Default is "16x9"}
+
+\item{master}{String. Name of slide master for template ppt.
+Use \code{\link{ppt_layout}} to see name of master and layouts.}
 
 \item{toc}{Logical. Should the slides have a table of contents?
 Default is FALSE}
@@ -47,7 +51,7 @@ Default is NULL}
 \item{slide_level}{Numeric. Defines the heading level that defines individual
 slides. Default is NULL}
 
-\item{pandoc_args}{Arguments to pass to pandoc.}
+\item{pandoc_args}{Arguments to pass to pandoc}
 }
 \description{
 Styles for eha rmarkdown ppt. Used with a template to create presentations
