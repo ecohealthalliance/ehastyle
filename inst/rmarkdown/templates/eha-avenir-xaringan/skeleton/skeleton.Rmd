@@ -1,14 +1,35 @@
 ---
-title: "EHA Presentation HTML"
-subtitle: "a very interesting talk"
+title: "Template Title"
 author: "Your Name"
-output: 
-    ehastyle::eha_xaringan
+date: "The Date"
+output:
+  ehastyle::eha_avenir_xar
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, fig.height=5, fig.align='center')
 ```
+
+
+class: center, middle
+
+# Build dynamic presentations
+
+## Author presentations that directly include code
+
+### Use markdown to do it
+
+---
+
+# Background
+
+* The `xaringan` package lets you make html presentations
+
+* The `ehastyle` package creates consistent formatting for your presentation
+
+* These can be used to create slide shows that dynamically update with your analysis
+
+---
 
 # A slide title
 
@@ -24,26 +45,6 @@ knitr::opts_chunk$set(echo = TRUE, fig.height=5, fig.align='center')
 
     - sub list item 3
     
----
-
-# Background
-
-* The `xaringan` package lets you make html presentations
-
-* The `ehastyle` package creates consistent formatting for your presentation
-
-* These can be used to create slide shows that dynamically update with your analysis
-
----
-
-class: center, middle
-
-# Build dynamic presentations
-
-## Author presentations that directly include code
-
-### Use markdown to do it
-
 ---
 
 # Here is some code
@@ -80,6 +81,7 @@ ggplot2::diamonds %>%
 ---
 
 # Two column slide
+
 .left-column[
 - Any content
 - You like

@@ -80,7 +80,7 @@ ggplot2::diamonds %>%
 ```
 ---
 
-# Two coloumn slide
+# Two column slide
 .left-column[
 - Any content
 - You like
