@@ -1,6 +1,6 @@
 #' EHA Xaringan Theme
 #'
-#' A function to produce an EHA Xaringan theme with the classic font. This
+#' A function to produce an EHA Xaringan theme with the avenir font. This
 #' function leans on \code{\link[xaringanthemer]{style_mono_light}} for many of
 #' the theme arguments. It uses \code{\link[xaringan]{moon_reader}} to create
 #' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
@@ -12,10 +12,10 @@
 #' @importFrom xaringanthemer google_font
 #'
 #' @return xaringan theme
-#' @export eha_classic_xar
+#' @export eha_avenir_xar
 #'
 #' @examples
-eha_classic_xar <- function(aspect = "16x9"){
+eha_avenir_xar <- function(aspect = "16x9"){
 
   ## get resources from package ----
 
@@ -29,7 +29,7 @@ eha_classic_xar <- function(aspect = "16x9"){
     stop("Aspect must be 16x9 or 4x3")
   }
 
- ## generate css for slides ----
+  ## generate css for slides ----
 
   xaringanthemer::style_mono_light(
     text_font_base = "Courier",
@@ -41,9 +41,11 @@ eha_classic_xar <- function(aspect = "16x9"){
     #title_slide_text_color = "#509935",
     title_slide_text_color = "#000000",
     background_image = ehaBackgroundPng,
-    header_font_google = google_font("Fira Sans", "300"),
-    text_font_google = google_font("Fira Sans"),
-    code_font_google = google_font("Fira Mono"),
+    header_font_family ="Avenir",
+    header_font_url = "https://font-avenir.s3.us-east-2.amazonaws.com/Avenir.css",
+    text_font_family = "Avenir",
+    text_font_url = "https://font-avenir.s3.us-east-2.amazonaws.com/Avenir.css",
+    code_font_google = xaringanthemer::google_font("Fira Mono"),
     code_font_size = "0.7rem",
     text_slide_number_font_size = "1em",
     link_color = "#8ec549",
