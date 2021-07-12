@@ -1,12 +1,12 @@
 #' EHA Xaringan Theme
 #'
-#' A function to produce an EHA Xaringan theme with the classic font. This
+#' A function to produce an EHA Xaringan theme with the avenir font. This
 #' function leans on \code{\link[xaringanthemer]{style_mono_light}} for many of
 #' the theme arguments. It uses \code{\link[xaringan]{moon_reader}} to create
 #' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
 #' plot outputs for html slides are not editable svgs.
 #'
-#' @param aspect String. Aspect ratio for power point slides.
+#' @param aspect String. Aspect ratio for slides.
 #' Either "16x9" or "4x3". Default is "16x9"
 #'
 #' @importFrom xaringanthemer google_font

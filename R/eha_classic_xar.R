@@ -6,7 +6,7 @@
 #' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
 #' plot outputs for html slides are not editable svgs.
 #'
-#' @param aspect String. Aspect ratio for power point slides.
+#' @param aspect String. Aspect ratio for slides.
 #' Either "16x9" or "4x3". Default is "16x9"
 #'
 #' @importFrom xaringanthemer google_font
