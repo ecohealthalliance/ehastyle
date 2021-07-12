@@ -29,6 +29,7 @@ eha_classic_xar <- function(aspect = "16x9"){
     stop("Aspect must be 16x9 or 4x3")
   }
 
+ ## generate css for slides ----
 
   xaringanthemer::style_mono_light(
     text_font_base = "Courier",
@@ -49,7 +50,7 @@ eha_classic_xar <- function(aspect = "16x9"){
     outfile = "eha-xaringan-themer.css"
   )
 
-  # conver aspect to ratio format
+  # convert aspect to ratio format ----
   ratio <- gsub(pattern = "x",replacement = ":",x = aspect)
 
   ## provide presentation config arguments ----
@@ -61,7 +62,7 @@ eha_classic_xar <- function(aspect = "16x9"){
                      titleSlideClass = c("right", "bottom"),
                      ratio = ratio)
 
-  ### combine theme and config  ----
+  ## combine theme and config  ----
   xaringan::moon_reader( css = "eha-xaringan-themer.css", lib_dir = "libs",nature = natureList )
 
 }
