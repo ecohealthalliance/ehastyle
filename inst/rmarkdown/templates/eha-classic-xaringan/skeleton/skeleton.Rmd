@@ -7,13 +7,93 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.height=5, fig.align='center')
 ```
 
-## Adding an RMarkdown Template
+class: center, middle
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
+# Build dynamic presentations
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
+## Author presentations that directly include code
 
-Finally, be sure to remove this message!
+### Use markdown to do it
+
+---
+
+# A slide title
+
+* These list items are 
+
+* Place holders for your 
+
+* Content
+
+    - sub list item 1
+
+    - sub list item 2
+
+    - sub list item 3
+    
+---
+
+# Background
+
+* The `xaringan` package lets you make html presentations
+
+* The `ehastyle` package creates consistent formatting for your presentation
+
+* These can be used to create slide shows that dynamically update with your analysis
+
+
+---
+
+# Here is some code
+
+```{r eval=FALSE, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)  
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    #theme_xaringan() + # doesnt work on m1 mac with googlefonts
+    coord_flip()
+
+```
+
+---
+
+# Here is the plot
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.alt="an example plot from the diamonds dataset showing cut on the y axis and carat on the x axis"}
+library(ggplot2)
+library(dplyr)
+library(xaringanthemer)
+
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    #theme_xaringan() + # doesnt work on m1 mac with googlefonts
+    coord_flip()
+
+```
+---
+
+# Two coloumn slide
+.left-column[
+- Any content
+- You like
+- On the left
+]
+
+.right-column[
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot2::diamonds %>%
+    ggplot(aes(x = cut, y = carat)) +
+    geom_violin() +
+    #theme_xaringan() + # doesnt work on m1 mac with googlefonts
+    coord_flip()
+```
+]
+
