@@ -1,0 +1,83 @@
+---
+title: "Template Title"
+author: "Your Name"
+date: "The Date"
+output: 
+  ehastyle::eha_avenir_pptx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(officedown)
+library(ggplot2)
+library(rvg)
+library(ehastyle)
+```
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+
+## Slide with Bullets
+
+- Bullet 1
+- Bullet 2
+- Bullet 3
+
+## Slide with R Output
+
+```{r cars, echo = TRUE}
+summary(cars)
+```
+
+## Slide with Table
+
+```{r iristable}
+head(iris)
+```
+## Slide to the Right 
+:::::: {.columns}
+::: {.column}
+Use `layout='Two Content', ph=officer::ph_location_right()` 
+to properly place content 
+:::
+
+::: {.column}
+
+```{r righttable, layout='Two Content',ph=officer::ph_location_right()}
+head(cars,10)
+```
+:::
+::::::
+
+## Slide to the left 
+:::::: {.columns}
+::: {.column}
+```{r layout='Two Content', ph=officer::ph_location_left()}
+head(cars)
+```
+:::
+
+::: {.column}
+- Left side table
+:::
+::::::
+
+##  Slide with SVG Plot
+
+```{r pressure}
+## use dml to make the plot an editable svg in ppt
+dml(plot(pressure))
+```
+
+## Slide with SVG Ggplot
+
+```{r }
+ggplotObj <- ggplot(mtcars, aes(wt, mpg), col = displ) +
+  geom_point()
+
+## pass a ggplot object to dml 
+dml(ggobj = ggplotObj)
+```
