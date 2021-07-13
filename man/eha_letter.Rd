@@ -6,6 +6,9 @@
 \usage{
 eha_letter(...)
 }
+\arguments{
+\item{...}{Additional parameters to pass to \code{\link[linl]{linl}}}
+}
 \description{
 This is a thin wrapper around the \code{\link[linl:linl]{linl::linl()}} function which prints letters,
 automatically using the EHA letterhead.  See that function's options for

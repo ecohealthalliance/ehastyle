@@ -6,6 +6,11 @@
 #' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
 #' plot outputs for html slides are not editable svgs.
 #'
+#' @note There is an issue using \code{\link[sysfonts]{sysfonts}} with
+#' M1 mac machines therefore\code{\link[xaringanthemer]{theme_xaringan}} is not
+#' able to use \code{\link[xaringanthemer]{google_font}} when creating ggplot themes.
+#'
+#'
 #' @param aspect String. Aspect ratio for slides.
 #' Either "16x9" or "4x3". Default is "16x9"
 #'

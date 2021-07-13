@@ -7,7 +7,7 @@
 pkg_resource(...)
 }
 \arguments{
-\item{...}{arguments to pass to \code{system.file}}
+\item{...}{arguments to pass to \code{\link[base]{system.file}}}
 }
 \value{
 string

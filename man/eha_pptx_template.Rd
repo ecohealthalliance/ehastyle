@@ -5,9 +5,10 @@
 \title{Open EHA Powerpoint templte}
 \usage{
 eha_pptx_template(
-  template = c("classic", "avenir"),
+  template = c("classic", "avenir", "predict"),
   aspect = c("16x9", "4x3"),
-  outdir = "./"
+  outdir = "./",
+  recursive = TRUE
 )
 }
 \arguments{
@@ -15,18 +16,22 @@ eha_pptx_template(
 
 \item{aspect}{String. Either 16x9 or 4x3. Defines the aspect ratio of the slides}
 
-\item{outfile}{String. Name of output file}
+\item{outdir}{String. Where should files be copied to before opening?}
+
+\item{recursive}{Logical. Should elements of the path other than the last be
+created? If true, like the Unix command mkdir -p. See \code{\link[base]{dir.create}}}
 }
 \value{
-
+pptx
 }
 \description{
-Open avenir and classic powerpoint templates. Providing no arguments will open
-all four templates. Providing either an aspect or a template will return the
-two corresponding templates. For example, if classic is provided to template,
-then classic 16x9 and classic 4x3 will be opened.
+Open avenir, classic, and predict powerpoint templates. Providing no arguments
+will open all six templates. Providing either an aspect or a template will
+return all the corresponding templates. For example, if classic is provided
+to template, then classic 16x9 and classic 4x3 will be opened.
 }
 \examples{
 #open all the templates
-eha_pptx_template()
+\dontrun{eha_pptx_template()}
+
 }
