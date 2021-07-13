@@ -17,9 +17,13 @@ code.
 
 ![xckd automation](https://xkcd.com/1205/)
 
+## How to use rmarkdown templates
+
+See [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/document-templates.html) and [Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/package-template.html) for more information. 
+
 ## Slide presentations
 
-This package contains 
+This package contains `classic`, `avenir`, and `predict` presentation templates that can be used with an aspect ratio of `16x9` or `4x3`. 
 
 ### PPTX
 
