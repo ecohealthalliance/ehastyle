@@ -81,6 +81,37 @@ The package currently contains the following templates:
 
 ## How to use rmarkdown templates
 
+There are two ways to use the templates contained in this package.
+
+1.  Use the Rstudio GUI
+
+-   Open a markdown file
+    <img src="./man/figures/openRMD.png" width="100%" />
+
+-   Click on the **from template** option
+
+<img src="./man/figures/clickTemplate.png" width="100%" />
+
+-   Select the template you would like to use
+    <img src="./man/figures/selectTemplate.png" width="100%" />
+
+-   Modify the template
+    <img src="./man/figures/nameDash.png" width="100%" />
+
+-   Knit and save your content
+    <img src="./man/figures/saveRMD.png" width="100%" />
+
+-   Revel in the glory of your creation
+    <img src="./man/figures/dashboard.png" width="100%" />
+
+2.  Use `rmarkdown::draft`
+
+-   Start with `rmarkdown::draft` then follow the same steps as above
+
+``` r
+rmarkdown::draft(file = "myfile.rmd",template = "eha-classic-pptx", package = "ehastyle")
+```
+
 See [R Markdown: The Definitive
 Guide](https://bookdown.org/yihui/rmarkdown/document-templates.html) and
 [Markdown
@@ -116,7 +147,7 @@ creating
 [{flexdashboard}](https://rstudio.github.io/flexdashboard/index.html)
 rmd documents.
 
-`Flexdashboards` allow you to create dashbaords with
+`Flexdashboards` allow you to create dashboards with
 
 ## Hosting Fonts on AWS
 
@@ -124,6 +155,6 @@ The Avenir font used in the different templates is currently hosted on
 AWS instance in an S3 bucket called `font-avenir`. There are two files,
 one is a woff2 font file and the other is a css document describing the
 font face. This workflow could be adapted for other templates that
-require a custom/propietary font.
+require a custom/proprietary font.
 
 See: <https://blog.arrowtype.com/host-webfont-on-aws/>

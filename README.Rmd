@@ -78,6 +78,52 @@ glue::glue("- {templates}",.sep = "\n")
  
 ## How to use rmarkdown templates
 
+There are two ways to use the templates contained in this package. 
+
+1) Use the Rstudio GUI
+
+- Open a markdown file 
+```{r open, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/openRMD.png")
+```
+
+- Click on the **from template** option
+
+```{r click, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/clickTemplate.png")
+```
+
+- Select the template you would like to use
+```{r select, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/selectTemplate.png")
+```
+
+- Modify the template
+```{r modify, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/nameDash.png")
+```
+
+- Knit and save your content
+```{r save, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/saveRMD.png")
+```
+
+- Revel in the glory of your creation
+```{r view, echo=FALSE, out.width = '100%'}
+knitr::include_graphics("./man/figures/dashboard.png")
+```
+
+
+2) Use `rmarkdown::draft`
+
+ - Start with `rmarkdown::draft` then follow the same steps as above
+
+```{r example draft2 , eval=FALSE}
+rmarkdown::draft(file = "myfile.rmd",template = "eha-classic-pptx", package = "ehastyle")
+```
+
+
+
 See [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/document-templates.html) and [Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/package-template.html) for more information. 
 
 ## Slide presentations
