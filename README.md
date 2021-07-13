@@ -147,7 +147,8 @@ creating
 [{flexdashboard}](https://rstudio.github.io/flexdashboard/index.html)
 rmd documents.
 
-`Flexdashboards` allow you to create dashboards with
+`Flexdashboards` allow you to create dashboards with ease. You can embed
+static or dynamic plots or elements without having to learn rshiny.
 
 ## Hosting Fonts on AWS
 
