@@ -15,7 +15,7 @@ your file with version control ([GIT](https://happygitwithr.com/)), then you wil
 By using templates, we can produce consistently styled content across the organization with minimal effort. As style guides change, we can update the templates and retroactively change the styling of content with a single line of 
 code. 
 
-![xckd automation](https://xkcd.com/1205/)
+![xckd automation](https://imgs.xkcd.com/comics/is_it_worth_the_time.png)
 
 ## Slide presentations
 
