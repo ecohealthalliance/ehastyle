@@ -115,3 +115,15 @@ This package currently contains a single function and template for
 creating
 [{flexdashboard}](https://rstudio.github.io/flexdashboard/index.html)
 rmd documents.
+
+`Flexdashboards` allow you to create dashbaords with
+
+## Hosting Fonts on AWS
+
+The Avenir font used in the different templates is currently hosted on
+AWS instance in an S3 bucket called `font-avenir`. There are two files,
+one is a woff2 font file and the other is a css document describing the
+font face. This workflow could be adapted for other templates that
+require a custom/propietary font.
+
+See: <https://blog.arrowtype.com/host-webfont-on-aws/>
