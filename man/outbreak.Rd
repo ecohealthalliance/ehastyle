@@ -19,6 +19,8 @@ outbreak(
 
 \item{keep_md}{Keep knitr-generated markdown}
 
+\item{cache_prefix}{String. Prefix for cache}
+
 \item{...}{Additional function arguments to pass to the base R Markdown HTML
 output formatter}
 

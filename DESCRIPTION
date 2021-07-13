@@ -22,7 +22,11 @@ Imports:
     xaringanthemer,
     bslib,
     officedown,
-    dplyr
+    dplyr,
+    git2r,
+    glue,
+    flexdashboard,
+    rlang
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Depends: 

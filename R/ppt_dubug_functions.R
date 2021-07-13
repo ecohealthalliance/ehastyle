@@ -5,22 +5,25 @@
 #' @param ppt_template String. Path to ppt template
 #' @param print Logical. Should the dataframe be printed?
 #'
+#' @seealso \code{\link[officer]{read_pptx}}, \code{\link[officer]{layout_properties}}
+#'
 #' @return dataframe
 #' @export ph_duplicate_check
 #'
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by arrange count filter
+#' @importFrom rlang .data
 #'
 #' @examples
 ph_duplicate_check <- function(ppt_template, print = FALSE){
   ppt <- officer::read_pptx(ppt_template)
 
   duplicates <- ppt %>%
-    officer::layout_properties() %>%
-    group_by(name, ph_label) %>%
-    arrange(name, ph_label) %>%
-    count(n_ph_label = ph_label) %>%
-    filter(n > 1)
+    officer::layout_properties(.data) %>%
+    group_by(.data$name, .data$ph_label) %>%
+    arrange(.data$name, .data$ph_label) %>%
+    count(n_ph_label = .data$ph_label) %>%
+    filter(.data$n > 1)
 
 
   if(print){
@@ -36,8 +39,9 @@ ph_duplicate_check <- function(ppt_template, print = FALSE){
 #' Print Powerpoint Layout
 #'
 #' Convenience wrapper for\code{\link[officer]{layout_summary}} used to debug
-#' issues with powerpoint templates. Returns all layout and master names for a
-#' given ppt.
+#' issues with powerpoint templates. Returns a list with first element containing
+#' the master names and the second element containing layout and master names for
+#' a given ppt.
 #'
 #' @param ppt_template String. Path to ppt file
 #' @param print Logical. Should layout be printed
@@ -61,14 +65,15 @@ ppt_layout <- function(ppt_template, print=FALSE){
 
 #' Check Powerpoint
 #'
-#' Checks for duplicate ph elements and matching master arugments
+#' Checks for duplicate ph elements using \code{\link{ph_duplicate_check}} and
+#'  matching master arguments using \code{\link{ppt_layout}}.
 #'
 #' @param ppt_template String. Path to ppt template
 #' @param print Logical. Should items be printed
 #' @param master String. Name of master slide template
 #'
-#' @return
-#' @export
+#' @return message
+#' @export ppt_check
 #'
 #' @examples
 ppt_check <- function(ppt_template, master, print = FALSE){

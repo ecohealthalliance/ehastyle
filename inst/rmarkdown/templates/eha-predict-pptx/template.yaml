@@ -1,0 +1,4 @@
+name: eha predict pptx
+description: >
+   Template used for EHA presentations of USAID Predict Findings
+create_dir: FALSE

@@ -16,6 +16,7 @@ data.frame
 }
 \description{
 Convenience wrapper for\code{\link[officer]{layout_summary}} used to debug
-issues with powerpoint templates. Returns all layout and master names for a
-given ppt.
+issues with powerpoint templates. Returns a list with first element containing
+the master names and the second element containing layout and master names for
+a given ppt.
 }

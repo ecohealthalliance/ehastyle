@@ -3,7 +3,7 @@ title: "EHA Presentation"
 subtitle: "EHA Subtitle"
 author: Your Name
 output:
-  ehastyle::eha_pptx:
+  ehastyle::eha_predict_pptx:
     aspect: 16x9
 ---
 

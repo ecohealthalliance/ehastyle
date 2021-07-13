@@ -17,3 +17,6 @@ dataframe
 \description{
 Checks for duplicate PH elements that would break rendering.
 }
+\seealso{
+\code{\link[officer]{read_pptx}}, \code{\link[officer]{layout_properties}}
+}

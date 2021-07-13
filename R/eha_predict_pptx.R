@@ -24,8 +24,8 @@
 #'
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @importFrom officer read_pptx on_slide ph_with external_img
-#' @export
-eha_pptx <- function(aspect = "16x9",
+#' @export eha_predict_pptx
+eha_predict_pptx <- function(aspect = "16x9",
                      toc = FALSE, toc_depth = 2, fig_width = 9.4,
                      fig_height = 4.24, fig_caption = TRUE, df_print = "default",
                      keep_md = FALSE, cache_prefix = "cache/",
@@ -33,9 +33,9 @@ eha_pptx <- function(aspect = "16x9",
                      slide_level = NULL,  pandoc_args = NULL) {
 
   if (aspect == "16x9") {
-    ppt_template = system.file("EcoHealthAlliancePPT16x9.pptx", package = "ehastyle")
+    ppt_template = system.file("EcoHealthAlliancePPT16x9_predict.pptx", package = "ehastyle")
   } else if (aspect == "4x3") {
-    ppt_template = system.file("EcoHealthAlliancePPT4x3.pptx", package = "ehastyle")
+    ppt_template = system.file("EcoHealthAlliancePPT4x3_predict.pptx", package = "ehastyle")
   } else {
     stop("Aspect must be 16x9 or 4x3")
   }
@@ -81,7 +81,7 @@ eha_pptx <- function(aspect = "16x9",
                         height = 2.24,
                         left = 1.1,
                         top = 0.89)
-                      )
+        )
       } else if (aspect == "4x3") {
 
         eha_logo_43 <- external_img(src = eha_logo_path,
@@ -97,7 +97,7 @@ eha_pptx <- function(aspect = "16x9",
                         height = 1.68,
                         left = 0.82,
                         top = 1.22)
-                      )
+        )
       }
     }
     print(pf, target = output_file)

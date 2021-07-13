@@ -20,3 +20,8 @@ the theme arguments. It uses \code{\link[xaringan]{moon_reader}} to create
 the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
 plot outputs for html slides are not editable svgs.
 }
+\note{
+There is an issue using \code{\link[sysfonts]{sysfonts}} with
+M1 mac machines therefore\code{\link[xaringanthemer]{theme_xaringan}} is not
+able to use \code{\link[xaringanthemer]{google_font}} when creating ggplot themes.
+}
