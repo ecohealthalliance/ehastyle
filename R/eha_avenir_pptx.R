@@ -28,7 +28,7 @@
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @importFrom officedown rpptx_document
 #' @export
-eha_avenir_pptx <- function(aspect = "16x9", master = "EcoHealth Alliance Avenir",
+eha_avenir_pptx <- function(aspect = "16x9", master = "EcoHealth Alliance",
                              toc = FALSE, toc_depth = 2, fig_width = 9.4,
                              fig_height = 4.24, fig_caption = TRUE, df_print = "default",
                              keep_md = FALSE,
