@@ -13,8 +13,6 @@
 #' @importFrom magrittr %>%
 #' @importFrom dplyr group_by arrange count filter
 #' @importFrom rlang .data
-#'
-#' @examples
 ph_duplicate_check <- function(ppt_template, print = FALSE){
   ppt <- officer::read_pptx(ppt_template)
 
@@ -74,8 +72,6 @@ ppt_layout <- function(ppt_template, print=FALSE){
 #'
 #' @return message
 #' @export ppt_check
-#'
-#' @examples
 ppt_check <- function(ppt_template, master, print = FALSE){
 
   dup_check <- ph_duplicate_check(ppt_template,print = print)
