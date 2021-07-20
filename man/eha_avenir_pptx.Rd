@@ -6,7 +6,7 @@
 \usage{
 eha_avenir_pptx(
   aspect = "16x9",
-  master = "EcoHealth Alliance Avenir",
+  master = "EcoHealth Alliance",
   toc = FALSE,
   toc_depth = 2,
   fig_width = 9.4,

@@ -1,8 +1,3 @@
-#' @import rmarkdown
-#' @import knitr
-#' @name ob
-NULL
-
 #' R Markdown format for EHA Outbreak Scenarios Reports
 #'
 #' @param self_contained Include all dependencies

@@ -3,8 +3,9 @@
 #' A function to produce an EHA Xaringan theme with the classic font. This
 #' function leans on \code{\link[xaringanthemer]{style_mono_light}} for many of
 #' the theme arguments. It uses \code{\link[xaringan]{moon_reader}} to create
-#' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, the
-#' plot outputs for html slides are not editable svgs.
+#' the markdown renderable object. Unlike \code{\link{eha_classic_pptx}}, you
+#' cannot create editable plots with \code{\link[rvg]{dml}}.  However, you can
+#' include interactive html widgets.
 #'
 #' @note There is an issue using \code{\link[sysfonts]{sysfonts}} with
 #' M1 mac machines therefore\code{\link[xaringanthemer]{theme_xaringan}} is not
@@ -13,14 +14,16 @@
 #'
 #' @param aspect String. Aspect ratio for slides.
 #' Either "16x9" or "4x3". Default is "16x9"
-#'
+#' @param self_contained Whether to produce a self-contained HTML file by
+#'   embedding all external resources into the HTML file.
+#' @param ... other arguments passed to \code{\link[xaringan]{moon_reader}} or
+#'   \code{\link[rmarkdown]{html_document}}
 #' @importFrom xaringanthemer google_font
 #'
 #' @return xaringan theme
 #' @export eha_classic_xar
 #'
-#' @examples
-eha_classic_xar <- function(aspect = "16x9"){
+eha_classic_xar <- function(aspect = "16x9", self_contained = TRUE, ...){
 
   ## get resources from package ----
 
@@ -68,6 +71,6 @@ eha_classic_xar <- function(aspect = "16x9"){
                      ratio = ratio)
 
   ## combine theme and config  ----
-  xaringan::moon_reader( css = "eha-xaringan-themer.css", lib_dir = "libs",nature = natureList )
+  xaringan::moon_reader(css = "eha-xaringan-themer.css", self_contained = self_contained, lib_dir = "libs",nature = natureList )
 
 }
