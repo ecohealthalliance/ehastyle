@@ -24,7 +24,7 @@
 #'
 #' @importFrom rmarkdown knitr_options output_format pandoc_available powerpoint_presentation pandoc_options
 #' @importFrom officer read_pptx on_slide ph_with external_img
-#' @export eha_predict_pptx
+#' @noRd
 eha_predict_pptx <- function(aspect = "16x9",
                      toc = FALSE, toc_depth = 2, fig_width = 9.4,
                      fig_height = 4.24, fig_caption = TRUE, df_print = "default",
@@ -106,7 +106,7 @@ eha_predict_pptx <- function(aspect = "16x9",
 
   output_format(knitr = eha_pptx_knit_opts,
                 pandoc = pandoc_options(to = "pptx",
-                                        from = from_rmarkdown(fig_caption,
+                                        from = rmarkdown::from_rmarkdown(fig_caption,
                                                               md_extensions),
                                         args = args),
                 keep_md = keep_md,
