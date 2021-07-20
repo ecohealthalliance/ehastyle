@@ -7,6 +7,9 @@ output:
 <!--
 In between these markers we can place comments.
 
+This is a template for creatingg an EHA-style flexdashboard using data pulled
+from AirTable. Use it as a starting point for your project dashboard!
+
 We are using the `flexdashboard` package here to lay out the report. More info
 on this can be found at https://rmarkdown.rstudio.com/flexdashboard/
 
@@ -15,7 +18,7 @@ on this can be found at https://rmarkdown.rstudio.com/flexdashboard/
 ```{r setup, include=FALSE}
 
 # You'll want the `airtabler` package to interface with AirTable. Get it by
-# running remotes::install_github('bergant/airtabler')
+# running remotes::install_github('ecohealthalliance/airtabler')
 library(airtabler) 
 
 # Other packages
@@ -64,7 +67,7 @@ fetch_all <- function(app_id, table, ...) {
 
 ```{r fetch-data}
 
-# Each base a fully described API 
+# Each base has a fully described API that can be found at https://airtable.com/YOUR_APP_ID/api/
 
 app_id <- "appwlxIzmQx5njRtQ" # ID for the base we are fetching. 
 

@@ -29,7 +29,6 @@
 #' @return function
 #' @export eha_flex_dashboard
 #'
-#' @examples
 eha_flex_dashboard <- function(orientation = "rows",bg = "#224A55",fg = "#5EB9D6",
                                primary = "#97C83E",secondary = "#B0A28A", version = 4,
                                fontUrl="https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2",family = "Avenir", style = "normal",
