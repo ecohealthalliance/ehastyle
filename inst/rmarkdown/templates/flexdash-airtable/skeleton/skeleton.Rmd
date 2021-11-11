@@ -39,31 +39,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 
-```{r fetch-all}
-
-# In general `airtabler` functions get 100 records at a time, this function
-# simplifies this.  We will incorporate this into our custom R package in the
-# future.
-fetch_all <- function(app_id, table, ...) {
-  out <- list()
-  out[[1]] <- air_get(app_id, table, combined_result = FALSE,...)
-  if(length(out[[1]]) == 0){
-    emptyTableMessage <- glue("The queried view for {table} in {app_id} is empty")
-    warning(emptyTableMessage)
-    return(emptyTableMessage)
-  } else {
-  offset <- get_offset(out[[1]])
-  while (!is.null(offset)) {
-    out <- c(out, list(air_get(app_id, table, combined_result = FALSE, offset = offset, ...)))
-    offset <- get_offset(out[[length(out)]])
-  }
-  out <- bind_rows(out)
-  cbind(id = out$id, out$fields, createdTime = out$createdTime, 
-        stringsAsFactors = FALSE)
-  }
-}
-```
-
 
 ```{r fetch-data}
 
@@ -77,7 +52,7 @@ app_id <- "appwlxIzmQx5njRtQ" # ID for the base we are fetching.
 # bats <- fetch_all(app_id, "Bat", view = "Validated Records")
 talks <- fetch_all(app_id, "TALKS")
 speakers <- fetch_all(app_id, "SPEAKERS")
-upComingTalks <- fetch_all(app_id = app_id , table = "TALKS", view = "Upcoming EHA Talks")
+upComingTalks <- fetch_all(base = app_id , table_name = "TALKS", view = "Upcoming EHA Talks")
 
 
 
