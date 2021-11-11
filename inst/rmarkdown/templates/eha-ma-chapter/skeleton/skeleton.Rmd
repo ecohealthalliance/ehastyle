@@ -1,6 +1,6 @@
 # Chapter title {#chapterTitle}
 
-See EHA https://ecohealthalliance.github.io/eha-ma-handbook/ chapter on contributing to the handbook for more detail.
+See [EHA chapter on contributing to the handbook](https://ecohealthalliance.github.io/eha-ma-handbook) for more detail.
 
 *What question will this chapter answer?*
 
