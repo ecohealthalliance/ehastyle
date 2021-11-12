@@ -1,0 +1,37 @@
+# Chapter title {#chapterTitle}
+
+See [EHA chapter on contributing to the handbook](https://ecohealthalliance.github.io/eha-ma-handbook) for more detail.
+
+*What question will this chapter answer?*
+
+## Summary
+Briefly, how did we answer the questions/cover the topic.
+
+## Workflow Summary
+
+0) Clone the [repo](https://github.com/ecohealthalliance/eha-ma-handbook) 
+1) Create a branch off of main/master for your chapter 
+2) Start a new Rmarkdown document
+3) Add content to RMD
+4) Add chapter to `_bookdown.yml`
+5) Preview chapter with `bookdown::preview_chapter("my-chapter.Rmd")`
+6) Create a pull request into main/master
+7) Revise and resubmit
+
+## Main content
+
+This is how we answered the question...
+
+### Section 1
+
+### Section 2
+
+### Section N
+
+## Additional Resources
+
+To learn more about the topic, check out these resources
+
+- Resource 1 - short description of linked resource
+- Resource N - short description of linked resource
+
