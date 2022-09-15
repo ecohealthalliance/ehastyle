@@ -29,9 +29,6 @@ check_templates(
 
 \item{recursive}{Logical. Should subfolders of outdir be created}
 }
-\value{
-
-}
 \description{
 Opens markdown templates as rmd files and/or renders them into their
 appropriate format.
