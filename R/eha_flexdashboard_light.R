@@ -27,7 +27,7 @@
 #' \code{\link[bslib:bs_theme]{bslib::bs_theme()}}
 #'
 #' @return function
-#' @export eha_flex_dashboard
+#' @export eha_flex_dashboard_light
 #'
 eha_flex_dashboard_light <- function(orientation = "rows",bg = "#cfe4ea",fg = "#5EB9D6",
                                primary = "#97C83E",secondary = "#B0A28A", version = 4,
