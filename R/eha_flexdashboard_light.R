@@ -29,7 +29,7 @@
 #' @return function
 #' @export eha_flex_dashboard_light
 #'
-eha_flex_dashboard_light <- function(orientation = "rows",bg = "#cfe4ea",fg = "#5EB9D6",
+eha_flex_dashboard_light <- function(orientation = "rows",bg = "#f7fdff",fg = "#5EB9D6",
                                primary = "#97C83E",secondary = "#B0A28A", version = 4,
                                fontUrl="https://font-avenir.s3.us-east-2.amazonaws.com/AvenirLTW04-85Heavy.woff2",family = "Avenir", style = "normal",
                                weight = "500",...){

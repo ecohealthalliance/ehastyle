@@ -6,7 +6,7 @@
 \usage{
 eha_flex_dashboard_light(
   orientation = "rows",
-  bg = "#cfe4ea",
+  bg = "#f7fdff",
   fg = "#5EB9D6",
   primary = "#97C83E",
   secondary = "#B0A28A",
