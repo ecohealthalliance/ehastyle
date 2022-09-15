@@ -6,14 +6,203 @@ output:
   ehastyle::eha_flex_dashboard_light
 ---
 
+<!--
+In between these markers we can place comments.
+
+This is a template for creatingg an EHA-style flexdashboard using data pulled
+from AirTable. Use it as a starting point for your project dashboard!
+
+We are using the `flexdashboard` package here to lay out the report. More info
+on this can be found at https://rmarkdown.rstudio.com/flexdashboard/
+
+-->
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+
+# You'll want the `airtabler` package to interface with AirTable. Get it by
+# running remotes::install_github('ecohealthalliance/airtabler')
+library(airtabler) 
+
+# Other packages
+library(ggplot2)        # plotting tools
+library(dplyr)          # data manipulation tools
+library(lubridate)      # Date/time manipulation
+library(janitor)        # Useful functions for cleaning data
+library(flexdashboard)  # For laying out the repot
+library(leaflet)        # For making maps
+library(glue)           # Helpful for making labels
+library(ggiraph)        # For interactive ggplots
+library(purrr)          # For manipulating nested data structures
+library(stringr)        # For manipulating strings
+
+# Don't display the code in the dashboard
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Adding an RMarkdown Template
 
-This file is what a user will see when they select your template. Make sure that you update the fields in the yaml header. In particular you will want to update the `output` field to whatever format your template requires.
 
-This is a good place to demonstrate special features that your template provides. Ideally it should knit out-of-the-box, or at least contain clear instructions as to what needs changing.
 
-Finally, be sure to remove this message!
+```{r fetch-data}
+
+# Each base has a fully described API that can be found at https://airtable.com/YOUR_APP_ID/api/
+
+app_id <- "appwlxIzmQx5njRtQ" # ID for the base we are fetching. 
+
+# Note that you can pass a `view` argument to air_get or fetch_all to get only
+# a view of a table (say, only validated records, or some other filtered view),
+# e.g.,
+# bats <- fetch_all(app_id, "Bat", view = "Validated Records")
+talks <- fetch_all(app_id, "TALKS")
+speakers <- fetch_all(app_id, "SPEAKERS")
+upComingTalks <- fetch_all(base = app_id , table_name = "TALKS", view = "Upcoming EHA Talks")
+
+
+
+
+```
+
+```{r clean-data}
+# A bit of cleanup.  janitor::clean_names is really helpful!
+talks <- talks %>% 
+  clean_names() %>% 
+  mutate(date_time = as.Date(date_time)) %>% 
+  mutate(created_time = as.Date(created_time))
+
+if(!is.character(upComingTalks)){
+upComingTalks <- upComingTalks %>% 
+    clean_names() %>% 
+    mutate(date_time = as.Date(date_time)) %>% 
+    mutate(created_time = as.Date(created_time))
+} else {
+ upComingTalks <- data.frame()
+}
+
+speakers <- speakers %>% 
+  clean_names()
+```
+
+
+```{r calculate-numbers}
+n_talks <- nrow(talks)
+n_speakers <- nrow(speakers)
+n_scheduled <- nrow(upComingTalks)
+```
+
+## Row
+
+
+### number of talks
+
+```{r}
+valueBox(n_talks)
+```
+
+### number of speakers
+
+```{r}
+valueBox(n_speakers)
+```
+
+### upcoming talks
+
+```{r}
+colorBreaks <- data.frame( color = rep(c("success","warning","danger"),each = 2), value = c(5, 4,3, 2, 1, 0))
+
+getColor <- function(x,colorBreaks){
+  i <- which(colorBreaks$value == x)
+  colorBreaks[i,"color"]
+}
+
+color <- getColor(n_scheduled,colorBreaks)
+
+valueBox(n_scheduled,color = color)
+```
+
+### upcoming talks target
+
+```{r upcomingTalksGauge}
+  gauge(n_scheduled, 0, 5,sectors = gaugeSectors(
+  success = c(4, 5), warning = c(2, 3), danger = c(0, 1)
+))
+```
+
+## Row
+
+### Speaker Insitutation Locations
+
+```{r make-location-data}
+# Making a nice, synthetic table of speaker affiliations locations
+
+speakerLocations <- ehastyle::speakerLocations
+
+```
+
+```{r leaflet-map}
+
+pal <- colorNumeric("RdYlBu", domain = speakerLocations$totalTalks)
+
+leaflet(data = speakerLocations) %>% 
+  addTiles() %>% 
+  addProviderTiles(providers$CartoDB.Positron) %>% 
+  addCircleMarkers(lng = ~lng, lat = ~lat, popup = ~label, 
+                   color = ~pal(totalTalks)) %>% 
+  addLegend("bottomright", pal = pal, values = ~totalTalks)
+```
+
+### Talks through time 
+
+
+```{r make-timeline}
+
+simpTypes <- talks$type %>% 
+  map_chr(function(x){
+    if(is.null(x[[1]])){
+      "_empty_"
+    } else {
+      x[[1]]
+    }
+  }) 
+
+talks$simpTypes <- simpTypes
+
+# Use ggplot with the 'ggiraph' package to allow for 
+# interactive plots (e.g.) tooltips
+timeline_plot <- ggplot(talks, 
+                        aes(x = date_time, 
+                            y = simpTypes, 
+                            tooltip = glue("Title: {str_wrap(name,50)}\nAbstract: {stringr::str_wrap( stringr::str_trunc(abstract,300),50)}"))) +
+  geom_point_interactive() + # Add an interactive layer
+  scale_fill_viridis_d(name = "Sample Type") + # Colorblind-friendly colors
+  labs(
+    x = "Date",
+    y = "Type of Talk"
+  ) +
+  theme_minimal() +
+  theme(  # Some styling
+    text = element_text(family = "Avenir",colour = "#5EB9D6"),
+    axis.text = element_text(family = "Avenir",colour = "#5EB9D6"),
+    axis.ticks.y = element_blank(),
+    legend.position = c(.75, .75),
+    plot.background = element_blank(), panel.background = element_blank())
+
+girafe(ggobj = timeline_plot, bg = "transparent") # Output as interactive
+```
+
+## Row {data-height=30}
+
+
+### last dashboard update
+
+```{r}
+last_dashboard_update <- Sys.Date()
+
+valueBox(value = "", caption = glue("Last dashboard update: {last_dashboard_update}"))
+```
+
+### last data update
+
+```{r}
+valueBox(value = "", caption = glue("TODO - most recent data."), color = "orange")
+```
+
+
