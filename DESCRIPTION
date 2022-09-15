@@ -1,7 +1,7 @@
 Package: ehastyle
 Type: Package
 Title: Default styles for EcoHealth Alliance Reports
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Noam", "Ross", , "ross@ecohealthalliance.org", role = c("aut", "cre")),
     person("Emma", "Mendelsohn", , "mendelsohn@ecohealthalliance.org", role = c("aut")),
