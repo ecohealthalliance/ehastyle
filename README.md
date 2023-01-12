@@ -83,6 +83,8 @@ The package currently contains the following templates:
 
 There are two ways to use the templates contained in this package.
 
+0. Restart rstudio after installing the package
+
 1.  Use the Rstudio GUI
 
 -   Open a markdown file
